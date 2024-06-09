@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Parker">
+  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  
+    <meta name="description" content="Parker的网络日志">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BugDev - Parker&#39;Blog">
+<meta property="og:url" content="https://bugdev.tk/page/2/index.html">
+<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:description" content="Parker的网络日志">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Parker">
+<meta property="article:tag" content="BugDeveloper|Java|network|开发|技术|博客">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>BugDev - Parker&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>BugDev - Parker&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/8.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java Runtime Has Compelte：0 ERROR">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/31555/" target="_blank">
+          <img src="../../img/post_to_index/Network.png" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师-7-企业网络架构2">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/31555/" target="_blank">
+          HCIA速通-网络工程师-7-企业网络架构2
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/31555/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         HDLC 串行链路传输方式 HDLC帧格式   信息帧、监控帧、无编号帧  配置 HDLC接口地址借用 PPPPPP协议是一种在串行链路上传输IP数据包的一种方法，是一个协议的集合，不是单一的协议，支持建立链路的链路控制协议LCP以及一系列的NCP 0x0021时，数据部分是IP数据报。 0xC021时,数据部分是LCP数据（链路控制协议） P
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-17 20:18" pubdate>
+              2022-03-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/24714/" target="_blank">
+          <img src="../../img/post_to_index/repair.jpg" srcset="/img/loading.gif" lazyload alt="eNSP的AR路由器启动失败问题">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/24714/" target="_blank">
+          eNSP的AR路由器启动失败问题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/24714/" target="_blank">
+          
+          我的系统版本：win11 ensp版本是 : v100r003c00spc100 过程今天打开电脑出现了ar设备不能启动的问题，具体症状为ar设备启动失败，无限循环#启动中，交换机启动正常。  随机Search了一下网页，大致解决方案都是防火墙未允许ensp通过，但是我的防火墙是允许了ensp通过的 于是以为防火墙出问题了，又把防火墙关闭了，依旧重复该问题。 还有一种方法是在virtualbox全
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-16 21:38" pubdate>
+              2022-03-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Soft-ware/">Soft ware</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Problem/">Problem</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/43795/" target="_blank">
+          <img src="../../img/post_to_index/Network.png" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师-6-企业网络架构1">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/43795/" target="_blank">
+          HCIA速通-网络工程师-6-企业网络架构1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/43795/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         链路聚合链路聚合 （英语： Link Aggregation ）是一个 计算机网络 术语，指将多个物理端口汇聚在一起，形成一个逻辑端口，以实现出&#x2F;入流量 吞吐量 在各成员端口的负荷分担，交换机根据用户配置的端口负荷分担策略决定 网络封包 从哪个成员端口发送到对端的交换机。. 当交换机检测到其中一个成员端口的链路发生故障时，就停止在此端口上发送封
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-13 21:44" pubdate>
+              2022-03-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/25704/" target="_blank">
+          <img src="../../img/post_to_index/mind.jpg" srcset="/img/loading.gif" lazyload alt="关于高级企业网络的笔记">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/25704/" target="_blank">
+          关于高级企业网络的笔记
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/25704/" target="_blank">
+          
+          常见的高级企业网络架构  核心层与汇聚层交换机链路聚合，提高容量 成对机器出现，互作备份 eSight直连核心层监控整个网络状态 DMZ同时对内部与外部提供服务 数据中心交互提供备份 边缘路由旁路接入防火墙，向外对整个网络提供防护（ddos） 接入层旁路应接入管理服务，作接入控制，作流量策略过滤
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-12 19:44" pubdate>
+              2022-03-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/47492/" target="_blank">
+          <img src="../../img/post_to_index/telent.jpg" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师-5-传输协议（SSH部分转载）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/47492/" target="_blank">
+          HCIA速通-网络工程师-5-传输协议（SSH部分转载）
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/47492/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         FTP工作原理FTP文件传输协议（File Transfer Protocol），用于Internet上的控制文件的双向传输，是一个应用程序。工作在TCP&#x2F;IP协议族的应用层，其传输层协议是TCP协议，目的在于提高文件传输的共享性和可靠性，是基于客户&#x2F;服务器模式工作的。 1.启动FTP客户通过FTP客户端软件，发起FTP交互式命令，告诉服务器，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-11 23:13" pubdate>
+              2022-03-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/27144/" target="_blank">
+          <img src="../../img/post_to_index/Network.png" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师 -4-路由协议">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/27144/" target="_blank">
+          HCIA速通-网络工程师 -4-路由协议
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/27144/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         AS 路由器-路由表 交换机-CAM表 路由选路-最长掩码匹配—》路由优先级—》开销Cost（相同时等价路由） IP路由表  路由表中包含了路由可达的目的网络，目的网络在路由表中不存在的数据包会被丢弃  路由优先级   路由类型 Direct OSPF Static RIP    优先级 0 10 60 100   静态路由配置目的网段地址 掩
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-10 15:02" pubdate>
+              2022-03-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/27054/" target="_blank">
+          <img src="../../img/post_to_index/span%20tree.jpg" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师 -3-生成树协议">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/27054/" target="_blank">
+          HCIA速通-网络工程师 -3-生成树协议
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/27054/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         生成树STP生成树协议 根桥：在以太网络中，以某台交换机的某个端口为根的生成。此端口为 此外其他交换机为非根  消除环路：通过阻断冗余链路来消除网络中可能存在的环路。  链路备份：当活动路径发生故障时， 激活备份链路， 及时恢复网络连通性。  选举根端口  阻塞非根端口  非根交换机在选举端口时分别根据该端口的根路径开销、对端BID、对端PID
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-09 22:49" pubdate>
+              2022-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/42402/" target="_blank">
+          <img src="../../img/post_to_index/Network.png" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师 -2-VRP基础">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/42402/" target="_blank">
+          HCIA速通-网络工程师 -2-VRP基础
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/42402/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         VRP基础 system-view命令进入系统视图  interface interface-type interface-number 命令进入相应的接口视图  quit命令的功能是从任何一个视图退出到上一层视图  用户可以随时键入“？ ”以获得在线帮助信息  display-Display information display ip in
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-08 19:45" pubdate>
+              2022-03-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/1132/" target="_blank">
+          <img src="../../img/post_to_index/osi.jpg" srcset="/img/loading.gif" lazyload alt="HCIA速通-网络工程师 -1-OSI模型">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/1132/" target="_blank">
+          HCIA速通-网络工程师 -1-OSI模型
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/1132/" target="_blank">
+          
+          特辑专属BGM-Hacknet原声集         网络结构层次 - OSI七层参考模型 物理层​     ​                                                                                                传输bit流 提供物理连接 机械参数&amp;&amp;电气性能标准化  数据链路层​
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-06 10:37" pubdate>
+              2022-03-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Network/">Network</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/18552/" target="_blank">
+          <img src="../../img/post_to_index/oveload_overrider.jpg" srcset="/img/loading.gif" lazyload alt="java se-方法重载">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/18552/" target="_blank">
+          java se-方法重载
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/18552/" target="_blank">
+          
+          重载同一个类中，完成一些相似的功能的方法，我们可以允许他们使用相同的名字，但是要保证它们的形参列表不同即可，如果同一个类中包含了两个或两个以上方法名相同的方法，但形参列表不同，这种情况被称为方法重载（overload） 12345678public static void sum(int i,int m)&amp;#123;    int a&#x3D;i+m;&amp;#125; &#x2F;&#x2F;如果有一个相似功能的方法可以这样写p
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-02 19:24" pubdate>
+              2022-03-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/java/">java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/java-se/">java se</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="../../"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="../../">1</a><span class="page-number current">2</span><a class="page-number" href="../3/#board">3</a><a class="page-number" href="../4/#board">4</a><a class="extend next" rel="next" href="../3/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Parker">
+  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  
+    <meta name="description" content="Parker的网络日志">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BugDev - Parker&#39;Blog">
+<meta property="og:url" content="https://bugdev.tk/page/3/index.html">
+<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:description" content="Parker的网络日志">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Parker">
+<meta property="article:tag" content="BugDeveloper|Java|network|开发|技术|博客">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>BugDev - Parker&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>BugDev - Parker&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/8.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java Runtime Has Compelte：0 ERROR">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/36441/" target="_blank">
+          <img src="../../img/post_to_index/collection.jpg" srcset="/img/loading.gif" lazyload alt="java-容器">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/36441/" target="_blank">
+          java-容器
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/36441/" target="_blank">
+          
+          前言简述一下数组，数组是一种容器，可以在其中放置一个或一组数据。从而，实现使用数组来管理一组数据。 它的优势是作为一种简单的线性序列，可以快速的访问数组元素，效率高。如果从效率和类型检查的角度讲，数组是最好的。 劣势 不灵活：容量事先定义好，不能随着需求的变化而扩容。 比如：我们在一个用户管理系统中，要把今天注册的所有用户取出来，那么这个用户有多少个？我们在写程序时是无法确定的。如果，你能确定那你
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-25 19:10" pubdate>
+              2022-02-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/java/">java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/java-se/">java se</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/36064/" target="_blank">
+          <img src="../../img/post_to_index/cycle.jpeg" srcset="/img/loading.gif" lazyload alt="By cycle on the country side">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/36064/" target="_blank">
+          By cycle on the country side
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/36064/" target="_blank">
+          
+          这是一篇加密文章，需要密码才能继续阅读。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-20 15:11" pubdate>
+              2022-02-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/My-Mind/">My Mind</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Private/">Private</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/22009/" target="_blank">
+          <img src="../../img/post_to_index/r2coding.png" srcset="/img/loading.gif" lazyload alt="编程站点分享-r2coding">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/22009/" target="_blank">
+          编程站点分享-r2coding
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/22009/" target="_blank">
+          
+          编程自学之路（Road 2 Coding）哔哩哔哩UP主“CodeSheep”制作的一个自学编程网站，涵盖内容十分全面，内容免费无广告 如果你有自学编程的需求，不妨看看！ 访问地址：https:&#x2F;&#x2F;www.r2coding.com
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-16 19:23" pubdate>
+              2022-02-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Other-Share/">Other Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Learn/">Learn</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/65212/" target="_blank">
+          <img src="../../img/post_to_index/ph.jpg" srcset="/img/loading.gif" lazyload alt="java-多态的一些概念">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/65212/" target="_blank">
+          java-多态的一些概念
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/65212/" target="_blank">
+          
+          多态polymorphism即多种形态，模糊策略，以不变应万变，使用多态可以编写更加通用的代码。多态是建立在继承和重写的基础上，是一个运行期的动态绑定行为。 要发生多态有三个必要条件：要有继承，要有重写，父类引用指向子类对象 4 based1）、继承链，自己没有找父亲2）、编译看类型+确定方法表，运行找对象3）、就近最优原则：自己没有才找父亲4）、发生多态，父类对子类的新增方法不可见 extend
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-12 17:39" pubdate>
+              2022-02-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/java/">java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/java-se/">java se</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/20312/" target="_blank">
+          <img src="../../img/post_to_index/firewall.jpg" srcset="/img/loading.gif" lazyload alt="Linux防火墙的简单操作">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/20312/" target="_blank">
+          Linux防火墙的简单操作
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/20312/" target="_blank">
+          
+          1234567891011121314151617181920212223242526272829#开启service firewalld start#重启service firewalld restart#关闭service firewalld stop#查看防火墙规则firewall-cmd --list-all#查看端口是否开放firewall-cmd --query-port&#x3D;8080&#x2F;t
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-29 13:33" pubdate>
+              2022-01-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Ops/">Ops</a>
+            
+              <a href="../../tags/firewall/">firewall</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/56547/" target="_blank">
+          <img src="../../img/post_to_index/ftp.jpg" srcset="/img/loading.gif" lazyload alt="cent os开启ftp">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/56547/" target="_blank">
+          cent os开启ftp
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/56547/" target="_blank">
+          
+          安装执行命令检查安装vsftpd 1vsftpd -v  会出现版本信息 没有的话执行下面的命令安装 1yum -y install vsftpd  配置12#修改配置文件vi &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf    123456# 禁用匿名用户anonymous_enable&#x3D;NO# 禁止切换根目录chroot_local_user&#x3D;YES# 启用写的权限allow_writeab
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-09 17:20" pubdate>
+              2022-01-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/Linux/">Linux</a>
+            
+              <a href="../../tags/Ftp/">Ftp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/34670/" target="_blank">
+          <img src="../../img/post_to_index/ssh.jpg" srcset="/img/loading.gif" lazyload alt="虚拟机下cent os开启ssh">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/34670/" target="_blank">
+          虚拟机下cent os开启ssh
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/34670/" target="_blank">
+          
+          安装openssh-server首先确认安装了openssh-server 12&#x2F;&#x2F;检查openssh-server的安装yum list installed | grep openssh-server  查看输出，没有安装的话通过以下命令安装 12&#x2F;&#x2F;安装openssh-serveryum install openssh-server  编辑配置文件输入命令编辑配置文件 1vim &#x2F;etc&#x2F;ss
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-09 12:53" pubdate>
+              2022-01-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/ssh/">ssh</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/42333/" target="_blank">
+          shell入门
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/42333/" target="_blank">
+          
+          shell介绍：命令行解释器 作用：接收用户命令，操作调用内核 特点：易编写、调试、灵活性强 shell解释器1sudo cat &#x2F;etc&#x2F;shells  入门以#!&#x2F;bin&#x2F;bash开头（指定解析器） 创建1touch helloword.sh  编写1vim helloword.sh  12#!&#x2F;bin&#x2F;bashecho &quot;hello word&quot;  执行1sh hellow
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-03 13:08" pubdate>
+              2022-01-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/shell/">shell</a>
+            
+              <a href="../../tags/linux/">linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/43020/" target="_blank">
+          <img src="../../img/post_to_index/trans.jpg" srcset="/img/loading.gif" lazyload alt="kvm虚拟化的日常-虚拟机网络模式和热添加技术">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/43020/" target="_blank">
+          kvm虚拟化的日常-虚拟机网络模式和热添加技术
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/43020/" target="_blank">
+          
+          原理略。。。 2022 -3月17增补：参考我在hcia系列文章的内容 nat默认安装为nat网络 1virt-install --virt-type kvm --os-type&#x3D;linux --os-variant rhel7 --name centos7 --memory 1024 --vcpus 1 --disk &#x2F;opt&#x2F;centos_kvm.raw,format&#x3D;raw,size&#x3D;10
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-28 13:48" pubdate>
+              2021-12-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/kvm/">kvm</a>
+            
+              <a href="../../tags/kvm%E7%AE%A1%E7%90%86/">kvm管理</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="../../post/29469/" target="_blank">
+          <img src="../../img/post_to_index/clone.jpg" srcset="/img/loading.gif" lazyload alt="kvm虚拟化的日常—克隆">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="../../post/29469/" target="_blank">
+          kvm虚拟化的日常—克隆
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="../../post/29469/" target="_blank">
+          
+          完整克隆完整克隆就是把原始的虚拟主机全部状态的一个拷贝，除了MAC地址和UUID，其余虚拟机的配置都一样，克隆出来的虚拟主机和原始的虚拟主机是相互独立的，不共享任何资源，都有自己独立的CPU、内存、和存储空间，好处就是安全性比较高，企业中主要用的也是完整克隆的方式； 1234567891011121314151617181920&#x2F;&#x2F;自动克隆virt-clone --auto-clone -o 源d
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-25 23:11" pubdate>
+              2021-12-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="../../categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="../../tags/kvm/">kvm</a>
+            
+              <a href="../../tags/kvm%E7%AE%A1%E7%90%86/">kvm管理</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="../2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="../4/#board">4</a><a class="extend next" rel="next" href="../4/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>
