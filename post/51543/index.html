@@ -14,26 +14,26 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Parker">
-  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  <meta name="keywords" content="Java|network|开发|技术|博客">
   
-    <meta name="description" content="nginx 的配置文件 &#x2F;etc&#x2F;nginx&#x2F;nginx.conf 编辑前先backup 1234567891011121314151617181920&#x2F;&#x2F; 备份配置文件cp nginx.conf nginx.conf.bak&#x2F;&#x2F; 编辑Nginx配置文件vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf&#x2F;&#x2F; 在配置文件的http&amp;#123;&amp;#125;中添加如下配置server &amp;#123;		#">
+    <meta name="description" content="的配置文件link1234567891011121314151617181920212223**编辑前先backup**&#x2F;&#x2F; 备份配置文件cp nginx.conf nginx.conf.bak&#x2F;&#x2F; 编辑Nginx配置文件vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf&#x2F;&#x2F; 在配置文件的http&amp;#123;&amp;#125;中添加如下配置server &amp;#123;		# 端口号		listen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx配置反向代理">
 <meta property="og:url" content="https://bugdev.tk/post/51543/index.html">
-<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
-<meta property="og:description" content="nginx 的配置文件 &#x2F;etc&#x2F;nginx&#x2F;nginx.conf 编辑前先backup 1234567891011121314151617181920&#x2F;&#x2F; 备份配置文件cp nginx.conf nginx.conf.bak&#x2F;&#x2F; 编辑Nginx配置文件vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf&#x2F;&#x2F; 在配置文件的http&amp;#123;&amp;#125;中添加如下配置server &amp;#123;		#">
+<meta property="og:site_name" content="aixloh&#39;Blog">
+<meta property="og:description" content="的配置文件link1234567891011121314151617181920212223**编辑前先backup**&#x2F;&#x2F; 备份配置文件cp nginx.conf nginx.conf.bak&#x2F;&#x2F; 编辑Nginx配置文件vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf&#x2F;&#x2F; 在配置文件的http&amp;#123;&amp;#125;中添加如下配置server &amp;#123;		# 端口号		listen">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://bugdev.tk/img/post_to_index/nginx.jpg">
 <meta property="article:published_time" content="2022-04-20T05:46:00.000Z">
-<meta property="article:modified_time" content="2022-04-26T06:43:30.728Z">
-<meta property="article:author" content="Parker">
+<meta property="article:modified_time" content="2024-06-09T12:48:49.833Z">
+<meta property="article:author" content="aixloh">
 <meta property="article:tag" content="Ops">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/nginx.jpg">
   
   
-  <title>nginx配置反向代理 - BugDev - Parker&#39;Blog</title>
+  <title>nginx配置反向代理 - aixloh&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -74,7 +74,7 @@
   </script>
   <script  src="../../js/utils.js" ></script>
   <script  src="../../js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="aixloh'Blog" type="application/atom+xml">
 </head>
 
 
@@ -83,7 +83,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="../../index.html">
-      <strong>BugDev - Parker&#39;Blog</strong>
+      <strong>db-rmrf - aixloh&#39;Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -213,7 +213,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      617 字
+      605 字
     </span>
   
 
@@ -254,14 +254,10 @@
             <h1 style="display: none">nginx配置反向代理</h1>
             
             <div class="markdown-body">
-              <p>nginx 的配置文件 /etc/nginx/nginx.conf</p>
-<p><strong>编辑前先backup</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 备份配置文件<br>cp nginx.conf nginx.conf.bak<br><br><br><span class="hljs-regexp">//</span> 编辑Nginx配置文件<br>vim <span class="hljs-regexp">/etc/</span>nginx/nginx.conf<br><span class="hljs-regexp">//</span> 在配置文件的http&#123;&#125;中添加如下配置<br>server &#123;<br>		<span class="hljs-comment"># 端口号</span><br>		listen       <span class="hljs-number">80</span>;<br>		<span class="hljs-comment"># 域名</span><br>		server_name  codingme.net;<br>		<span class="hljs-comment"># web目录</span><br>		root /webroot;<br>		<span class="hljs-comment"># 默认首页</span><br>		index index.html<br>		error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /<span class="hljs-number">50</span>x.html;<br>		location / &#123;<br>		&#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+              <figure class="highlight nginx"><figcaption><span>的配置文件</span><a href="/etc/nginx/nginx.conf">link</a></figcaption><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><pre><code class="hljs nginx"><br>**编辑前先backup**<br><br>// 备份配置文件<br><span class="hljs-attribute">cp</span> nginx.conf nginx.conf.bak<br><br><br>// 编辑Nginx配置文件<br>vim /etc/nginx/nginx.conf<br>// 在配置文件的http&#123;&#125;中添加如下配置<br><span class="hljs-section">server</span> &#123;<br>		<span class="hljs-comment"># 端口号</span><br>		<span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>		<span class="hljs-comment"># 域名</span><br>		<span class="hljs-attribute">server_name</span>  codingme.net;<br>		<span class="hljs-comment"># web目录</span><br>		<span class="hljs-attribute">root</span> /webroot;<br>		<span class="hljs-comment"># 默认首页</span><br>		<span class="hljs-attribute">index</span> index.html<br>		error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.html;<br>		<span class="hljs-section">location</span> / &#123;<br>		&#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="配置反向代理"><a href="#配置反向代理" class="headerlink" title="配置反向代理"></a>配置反向代理</h3><p>什么是反向代理呢？<a href="/post/32921/">参考</a></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 编辑Nginx配置文件<br>vim <span class="hljs-regexp">/etc/</span>nginx/nginx.conf<br><span class="hljs-regexp">//</span> 在配置文件的http&#123;&#125;中添加如下配置<br> server &#123;<br>        listen       <span class="hljs-number">80</span>;<br>        server_name  codingme.net;<br>        location / &#123;<br>			<span class="hljs-comment"># Tomcat访问路径</span><br>            proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span>/;<br>        &#125;<br>        error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /<span class="hljs-number">50</span>x.html;<br>        location = /<span class="hljs-number">50</span>x.html &#123;<br>            root   html;<br>        &#125;        <br>    &#125;  <br></code></pre></td></tr></table></figure>
-
-
             </div>
             <hr>
             <div>
@@ -296,6 +292,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="../18054/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">01-JavaSE基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -399,30 +401,6 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
   
 
@@ -480,8 +458,6 @@
   
 
 
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

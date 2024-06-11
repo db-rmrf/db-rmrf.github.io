@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="aixloh">
+  <meta name="keywords" content="Java|network|开发|技术|博客">
+  
+    <meta name="description" content="简介JavaScript 是 Web 的编程语言。 所有现代的 HTML 页面都可以使用 JavaScript。 JavaScript 是脚本语言JavaScript 是一种轻量级的编程语言。 JavaScript 是可插入 HTML 页面的编程代码。 引入方式内部标签123&lt;script&gt;&#x2F;&#x2F;js代码    &lt;&#x2F;script&gt;  外部引入先有一个js文件 html代码 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础-JavaScript基础">
+<meta property="og:url" content="https://bugdev.tk/post/34209/index.html">
+<meta property="og:site_name" content="aixloh&#39;Blog">
+<meta property="og:description" content="简介JavaScript 是 Web 的编程语言。 所有现代的 HTML 页面都可以使用 JavaScript。 JavaScript 是脚本语言JavaScript 是一种轻量级的编程语言。 JavaScript 是可插入 HTML 页面的编程代码。 引入方式内部标签123&lt;script&gt;&#x2F;&#x2F;js代码    &lt;&#x2F;script&gt;  外部引入先有一个js文件 html代码 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bugdev.tk/img/post_to_index/javaweb.jpg">
+<meta property="article:published_time" content="2023-03-26T04:54:00.000Z">
+<meta property="article:modified_time" content="2024-06-11T06:37:51.147Z">
+<meta property="article:author" content="aixloh">
+<meta property="article:tag" content="Java|network|开发|技术|博客">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/javaweb.jpg">
+  
+  
+  <title>前端基础-JavaScript基础 - aixloh&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="aixloh'Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>db-rmrf - aixloh&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/7.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端基础-JavaScript基础">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-03-26 12:54" pubdate>
+        2023年3月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      92 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端基础-JavaScript基础</h1>
+            
+            <div class="markdown-body">
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>JavaScript 是 Web 的编程语言。</p>
+<p>所有现代的 HTML 页面都可以使用 JavaScript。</p>
+<h2 id="JavaScript-是脚本语言"><a href="#JavaScript-是脚本语言" class="headerlink" title="JavaScript 是脚本语言"></a>JavaScript 是脚本语言</h2><p>JavaScript 是一种轻量级的编程语言。</p>
+<p>JavaScript 是可插入 HTML 页面的编程代码。</p>
+<h1 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h1><h2 id="内部标签"><a href="#内部标签" class="headerlink" title="内部标签"></a>内部标签</h2><figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript">&lt;script&gt;<br><span class="hljs-comment">//js代码    </span><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="外部引入"><a href="#外部引入" class="headerlink" title="外部引入"></a>外部引入</h2><p>先有一个js文件</p>
+<p>html代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;script src=<span class="hljs-string">&quot;路径&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h1><p>浏览器F12</p>
+<p><img src="/post/34209/%E6%8E%A7%E5%88%B6%E5%8F%B0.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>console.log( ) </code>    //输出代码，等价于java的sout</p>
+<h1 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h1><p>var 变量名 = 变量值</p>
+<p>js只需要var来定义变量</p>
+<ul>
+<li>严格区分大小写</li>
+<li>不能以数字开头</li>
+</ul>
+<h2 id="严格检查模式"><a href="#严格检查模式" class="headerlink" title="严格检查模式"></a>严格检查模式</h2><p>使用’use strict’;严格检查模式来避免JS的随意性出现的问题</p>
+<ul>
+<li>必须写在script第一行</li>
+<li>局部变量都使用let定义</li>
+</ul>
+<p>“use strict” 指令在 JavaScript 1.8.5 (ECMAScript5) 中新增。</p>
+<p>它不是一条语句，但是是一个字面量表达式，在 JavaScript 旧版本中会被忽略。</p>
+<p>“use strict” 的目的是指定代码在严格条件下执行。</p>
+<p>严格模式下你不能使用未声明的变量。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>js不区分小数和整数</p>
+<p>判断数据类型使用typeof</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">typeof</span> 数据<br></code></pre></td></tr></table></figure>
+
+<h2 id="数值（Number）"><a href="#数值（Number）" class="headerlink" title="数值（Number）"></a>数值（Number）</h2><p>整数和小数（比如1和3.14）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-number">123</span> <span class="hljs-comment">//整数		</span><br><span class="hljs-number">123.1</span>	<span class="hljs-comment">//浮点数</span><br><span class="hljs-number">1.123e3</span> <span class="hljs-comment">//科学计数法</span><br>-<span class="hljs-number">99</span> <span class="hljs-comment">//负数</span><br><span class="hljs-title class_">NaN</span>		<span class="hljs-comment">//not a number</span><br><span class="hljs-title class_">Infinity</span> 	<span class="hljs-comment">//无限大</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符串（String）"><a href="#字符串（String）" class="headerlink" title="字符串（String）"></a>字符串（String）</h2><p>字符组成的文本（比如“Hello World”）</p>
+<h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><p>可以使用内置属性 <strong>length</strong> 来计算字符串的长度：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> txt = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>;<br><span class="hljs-keyword">var</span> sln = txt.<span class="hljs-property">length</span>;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><p>在 JavaScript 中，字符串写在单引号或双引号中。</p>
+<p>因为这样，以下实例 JavaScript 无法解析：</p>
+<p> “We are the so-called “Vikings” from the north.”</p>
+<p>字符串 “We are the so-called “ 被截断。</p>
+<p>如何解决以上的问题呢？可以使用反斜杠 () 来转义 “Vikings” 字符串中的双引号，如下:</p>
+<p> “We are the so-called &quot;Vikings&quot; from the north.”</p>
+<p> 反斜杠是一个<strong>转义字符</strong>。 转义字符将特殊字符转换为字符串字符：</p>
+<p>转义字符 () 可以用于转义撇号，换行，引号，等其他特殊字符。</p>
+<p>下表中列举了在字符串中可以使用转义字符转义的特殊字符：</p>
+<table>
+<thead>
+<tr>
+<th align="left">代码</th>
+<th align="left">输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#39;</td>
+<td align="left">单引号</td>
+</tr>
+<tr>
+<td align="left">&quot;</td>
+<td align="left">双引号</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">反斜杠</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">换行</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td align="left">回车</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">tab(制表符)</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">退格符</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td align="left">换页符</td>
+</tr>
+</tbody></table>
+<h3 id="字符串属性和方法"><a href="#字符串属性和方法" class="headerlink" title="字符串属性和方法"></a>字符串属性和方法</h3><p>原始值字符串，如 “John”, 没有属性和方法(因为他们不是对象)。</p>
+<p>原始值可以使用 JavaScript 的属性和方法，因为 JavaScript 在执行方法和属性时可以把原始值当作对象。</p>
+<p><strong>字符串方法我们将在下一章节中介绍。</strong></p>
+<hr>
+<h3 id="字符串属性"><a href="#字符串属性" class="headerlink" title="字符串属性"></a>字符串属性</h3><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">constructor</td>
+<td align="left">返回创建字符串属性的函数</td>
+</tr>
+<tr>
+<td align="left">length</td>
+<td align="left">返回字符串的长度</td>
+</tr>
+<tr>
+<td align="left">prototype</td>
+<td align="left">允许您向对象添加属性和方法</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h3><table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">charAt()</td>
+<td align="left">返回指定索引位置的字符</td>
+</tr>
+<tr>
+<td align="left">charCodeAt()</td>
+<td align="left">返回指定索引位置字符的 Unicode 值</td>
+</tr>
+<tr>
+<td align="left">concat()</td>
+<td align="left">连接两个或多个字符串，返回连接后的字符串</td>
+</tr>
+<tr>
+<td align="left">fromCharCode()</td>
+<td align="left">将 Unicode 转换为字符串</td>
+</tr>
+<tr>
+<td align="left">indexOf()</td>
+<td align="left">返回字符串中检索指定字符第一次出现的位置</td>
+</tr>
+<tr>
+<td align="left">lastIndexOf()</td>
+<td align="left">返回字符串中检索指定字符最后一次出现的位置</td>
+</tr>
+<tr>
+<td align="left">localeCompare()</td>
+<td align="left">用本地特定的顺序来比较两个字符串</td>
+</tr>
+<tr>
+<td align="left">match()</td>
+<td align="left">找到一个或多个正则表达式的匹配</td>
+</tr>
+<tr>
+<td align="left">replace()</td>
+<td align="left">替换与正则表达式匹配的子串</td>
+</tr>
+<tr>
+<td align="left">search()</td>
+<td align="left">检索与正则表达式相匹配的值</td>
+</tr>
+<tr>
+<td align="left">slice()</td>
+<td align="left">提取字符串的片断，并在新的字符串中返回被提取的部分</td>
+</tr>
+<tr>
+<td align="left">split()</td>
+<td align="left">把字符串分割为子字符串数组</td>
+</tr>
+<tr>
+<td align="left">substr()</td>
+<td align="left">从起始索引号提取字符串中指定数目的字符</td>
+</tr>
+<tr>
+<td align="left">substring()</td>
+<td align="left">提取字符串中两个指定的索引号之间的字符</td>
+</tr>
+<tr>
+<td align="left">toLocaleLowerCase()</td>
+<td align="left">根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射</td>
+</tr>
+<tr>
+<td align="left">toLocaleUpperCase()</td>
+<td align="left">根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射</td>
+</tr>
+<tr>
+<td align="left">toLowerCase()</td>
+<td align="left">把字符串转换为小写</td>
+</tr>
+<tr>
+<td align="left">toString()</td>
+<td align="left">返回字符串对象值</td>
+</tr>
+<tr>
+<td align="left">toUpperCase()</td>
+<td align="left">把字符串转换为大写</td>
+</tr>
+<tr>
+<td align="left">trim()</td>
+<td align="left">移除字符串首尾空白</td>
+</tr>
+<tr>
+<td align="left">valueOf()</td>
+<td align="left">返回某个字符串对象的原始值</td>
+</tr>
+</tbody></table>
+<h2 id="布尔值（Boolean）"><a href="#布尔值（Boolean）" class="headerlink" title="布尔值（Boolean）"></a>布尔值（Boolean）</h2><p>true（真）和false（假）两个特定值</p>
+<h2 id="Undefined未定义"><a href="#Undefined未定义" class="headerlink" title="Undefined未定义"></a>Undefined未定义</h2><p>Undefined    表示“未定义”或不存在，即此处目前没有任何值</p>
+<p>出现Undefined的情况：<br>1，当声明了变量但未赋值时，这个变量的值就是undefined<br>2，调用函数（方法）时，函数有形参，但未提供实参，则参数为undefined<br>3.函数没有返回值，默认返回undefined</p>
+<h2 id="null空值"><a href="#null空值" class="headerlink" title="null空值"></a>null空值</h2><p>Null表示空缺，即此处应该有一个值，但目前为空</p>
+<p>表示空值<br>使用Null类型值时注意以下几点<br>1）使用typeof操作符测试null返回object字符串。<br>2）undefined派生自null，所以等值比较返回值是true。未初始化的变量和赋值为null的变量相等</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-string">&quot;dada&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>数组下标越界会显示未定义</li>
+</ul>
+<p>**push() **方法可以向数组的末尾添加一个或者多个元素，并返回新的长度.</p>
+<p>**pop() **方法用于删除并返回数组的最后一个元素。</p>
+<p><strong>unshift()</strong> 方法可向数组的开头添加一个或更多元素，并返回新的长度。</p>
+<p><strong>shift()</strong>  方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。</p>
+<p><strong>isArray()</strong> 这个方法用来判断一个对象是不是数组，是的话返回true，否则返回false</p>
+<p>**map()**方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。方法按照原始数组元素顺序依次处理元素。</p>
+<ul>
+<li><p>参数：currentValue当前元素的值</p>
+</li>
+<li><p>index当前元素的索引值</p>
+</li>
+<li><p>arr当前元素属于的数组对象</p>
+</li>
+</ul>
+<p>**filter()**方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。不会对空数组进行检测。不会改变原始数组。</p>
+<ul>
+<li><p>参数：currentValue当前元素的值</p>
+</li>
+<li><p>index当前元素的索引值</p>
+</li>
+<li><p>arr当前元素属于的数组对象</p>
+</li>
+</ul>
+<p>**every()**方法用于检测数组所有元素是否都符合指定条件（通过函数提供）。方法使用指定函数检测数组中的所有元素：如果数组中检测到有一个元素不满足，则整个表达式返回 false ，且剩余的元素不会再进行检测。如果所有元素都满足条件，则返回 true。不会对空数组进行检测。不会改变原始数组。</p>
+<ul>
+<li><p>参数：currentValue当前元素的值</p>
+</li>
+<li><p>index当前元素的索引值</p>
+</li>
+<li><p>arr当前元素属于的数组对象</p>
+</li>
+</ul>
+<p>**some()**方法用于检测数组中的元素是否满足指定条件（函数提供）。方法会依次执行数组的每个元素：如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。如果没有满足条件的元素，则返回false。不会对空数组进行检测。不会改变原始数组。</p>
+<ul>
+<li><p>参数：currentValue当前元素的值</p>
+</li>
+<li><p>index当前元素的索引值</p>
+</li>
+<li><p>arr当前元素属于的数组对象</p>
+</li>
+</ul>
+<p>**splice()**方法用于添加或删除数组中的元素。这种方法会改变原始数组。如果仅删除一个元素，则返回一个元素的数组。 如果未删除任何元素，则返回空数组。</p>
+<ul>
+<li>参数：index 必须，规定从何处添加/删除元素。该参数是开始插入和删除的数组元素的下标，必须是数字</li>
+<li>howmany 可选，规定应该删除多少元素。必须是数字，但可以是“0”，如果为规定此参数，则删除从index开始到原数组结 尾的所有元素。</li>
+<li>item…itemX 可选，要添加到数组的新元素</li>
+</ul>
+<p>**slice()**方法可从已有的数组中返回选定的元素。方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。方法不会改变原始数组。</p>
+<ul>
+<li>参数：start 规定从何处开始选取。如果该参数为负数，则表示从原数组的倒数第几个元素开始提取，slice(-2) 表示提取原数组中 的倒数第二个元素到最后一个元素（包含最后一个元素）。</li>
+<li>end() 规定从何处结束选取。没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。如果该参数为负数， 则它表示在原数组中的倒数第几个元素结束抽取</li>
+</ul>
+<p>**indexOf()**方法可返回某个指定的字符串值在字符串中首次出现的位置。如果没有找到匹配的字符串则返回 -1。indexOf() 方法区分大小写。</p>
+<ul>
+<li><p>参数：search value 必须，规定需要检查的字符串值</p>
+</li>
+<li><p>start 可选，规定在自负串开始检索的位置，如果省略，则将从字符串的首字符开始检索</p>
+</li>
+</ul>
+<p><strong>includes()</strong> 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。</p>
+<ul>
+<li><p>参数：searchElement 必须，需要查找的元素值</p>
+</li>
+<li><p>fromIndex 从该索引处开始查找 searchElement。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜索。默 认为 0。</p>
+</li>
+</ul>
+<p>**concat()**方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</p>
+<p>**join()**方法用于把数组中的所有元素放入一个字符串。该元素是通过指定的分隔符进行分隔的。</p>
+<p>**split()**方法用于把一个字符串分割成字符串数组。方法不改变原始字符串。</p>
+<ul>
+<li><p>参数：separator 可选。字符串或正则表达式，从该参数指定的地方分割 string Object。</p>
+</li>
+<li><p>limit 可选。该参数可指定返回的数组的最大长度。</p>
+</li>
+</ul>
+<p>**forEach()**方法用于调用数组的每个元素，并将元素传递给回调函数。</p>
+<p>**sort()**方法用于对数组的元素进行排序。数组在原数组上进行排序，不生成副本。</p>
+<p>**reverse()**方法用于颠倒数组中元素的顺序。</p>
+<p>**find()**方法返回通过测试（函数内判断）的数组的第一个元素的值。方法为数组中的每个元素都调用一次函数执行：当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数。如果没有符合条件的元素返回 undefined<br>。对于空数组，函数是不会执行的。 并没有改变数组的原始值。</p>
+<p>**findIndex()**方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置。 方法为数组中的每个元素都调用一次函数执行：当数组中的元素在测试条件时返回 true 时, 返回符合条件的元素的索引位置，之后的值不会再调用执行函数。如果没有符合条件的元素返回 -1<br>。对于空数组，函数是不会执行的。并没有改变数组的原始值。</p>
+<p><strong>fill()</strong> 方法用于将一个固定值替换数组的元素。</p>
+<ul>
+<li>参数：value 必须，填充的值</li>
+<li>start 可选，开始填充的位置</li>
+<li>end 可选，停止填充的位置，默认为array.length</li>
+</ul>
+<p><strong>keys()、values()、entries()</strong><br>keys()是对键名的遍历、values()对键值的遍历、entries()是对键值对的遍历。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> person = &#123;键<span class="hljs-number">1</span>：值<span class="hljs-number">1</span>,键<span class="hljs-number">2</span>：值<span class="hljs-number">2</span>,键<span class="hljs-number">2</span>：值<span class="hljs-number">2</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对象使用键值对定义</p>
+<p>对象（object）（引用）：各种值组成的集合</p>
+<p><strong>动态增删</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">delete</span> 对象名.属性 <span class="hljs-comment">//删除</span><br><br>对象名.属性 = xxx <span class="hljs-comment">//增加</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>判断对象是否存在属性</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&#x27;属性名&#x27;</span> <span class="hljs-keyword">in</span> 对象名<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>JS中属性都是以字符串形式存储</li>
+</ul>
+<p><strong>判断属性是否为该对象独有的</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">对象名.<span class="hljs-title function_">hasownProperty</span>(<span class="hljs-string">&#x27;属性名&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">&amp;&amp;		<span class="hljs-comment">//与</span><br>||		<span class="hljs-comment">//或</span><br>!		<span class="hljs-comment">//非</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">=		<span class="hljs-comment">//赋值</span><br>==		<span class="hljs-comment">//等于（当两个变量字面值一致时会判定等于,不区分类型）</span><br>===		<span class="hljs-comment">//绝对等于（判断类型、值相等时为true）</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>NaN === NaN为false，NaN与所有数字都不相等，包括自己</li>
+<li>通过isNa(NaN)方法判断是不是一个数</li>
+</ul>
+<h3 id="浮点数精度问题"><a href="#浮点数精度问题" class="headerlink" title="浮点数精度问题"></a>浮点数精度问题</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>((<span class="hljs-number">1</span>/<span class="hljs-number">3</span>)===(<span class="hljs-number">1</span>-<span class="hljs-number">2</span>/<span class="hljs-number">3</span>)) <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
+
+<p>使用绝对值函数abs来判断是否小于一定位数来判断两个数是否相等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>((<span class="hljs-number">1</span>/<span class="hljs-number">3</span>)===(<span class="hljs-number">1</span>-<span class="hljs-number">2</span>/<span class="hljs-number">3</span>))&lt;<span class="hljs-number">0.0000001</span>)<br></code></pre></td></tr></table></figure>
+
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><p><strong>if…else</strong></p>
+<p><strong>switch</strong></p>
+<p><strong>while</strong></p>
+<p><strong>for</strong></p>
+<p>数组遍历</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">456</span>, <span class="hljs-number">15</span>, <span class="hljs-number">123</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr[i]);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/post/34209/image-20230518202630905.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Set和Map"><a href="#Set和Map" class="headerlink" title="Set和Map"></a>Set和Map</h1><p><strong>简述：</strong><br>Set 和 Map 主要的应用场景在于 数据重组 和 数据储存。</p>
+<p>Set 是一种叫做集合的数据结构，Map 是一种叫做字典的数据结构。</p>
+<p><strong>集合 与 字典 的区别：</strong></p>
+<ul>
+<li><p>共同点：集合、字典 可以储存不重复的值</p>
+</li>
+<li><p>不同点：集合 是以 [value, value]的形式储存元素，字典 是以 [key, value] 的形式储存</p>
+</li>
+</ul>
+<h3 id="集合（Set）："><a href="#集合（Set）：" class="headerlink" title="集合（Set）："></a><strong>集合（Set）：</strong></h3><ul>
+<li><p>ES6 新增的一种新的数据结构，类似于数组，成员唯一（内部元素没有重复的值）。且使用键对数据排序即顺序存储。</p>
+</li>
+<li><p>Set 本身是一种构造函数，用来生成 Set 数据结构。</p>
+</li>
+<li><p>Set 对象允许你储存任何类型的唯一值，无论是原始值或者是对象引用。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()<br>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>].<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> s.<span class="hljs-title function_">add</span>(x))<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> s) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i)	<span class="hljs-comment">// 1 2 3 4</span><br>&#125;<br><span class="hljs-comment">// 去重数组的重复对象</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]<br>[... <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr)]	<span class="hljs-comment">// [1, 2, 3]</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>注意：向 Set 加入值的时候，不会发生类型转换，所以5和”5”是两个不同的值。Set 内部判断两个值是否不同，使用的算法叫做“Same-value-zero equality”，它类似于精确相等运算符（===），主要的区别是NaN等于自身，而精确相等运算符认为NaN不等于自身。</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();<br><span class="hljs-keyword">let</span> a = <span class="hljs-title class_">NaN</span>;<br><span class="hljs-keyword">let</span> b = <span class="hljs-title class_">NaN</span>;<br>set.<span class="hljs-title function_">add</span>(a);<br>set.<span class="hljs-title function_">add</span>(b);<br>set <span class="hljs-comment">// Set &#123;NaN&#125;</span><br><br><span class="hljs-keyword">let</span> set1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()<br>set1.<span class="hljs-title function_">add</span>(<span class="hljs-number">5</span>)<br>set1.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;5&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...set1])	<span class="hljs-comment">// [5, &quot;5&quot;]</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>方法</strong></p>
+<ul>
+<li><p>add(value)：新增，相当于 array里的push。</p>
+</li>
+<li><p>delete(value)：存在即删除集合中value。</p>
+</li>
+<li><p>has(value)：判断集合中是否存在 value。</p>
+</li>
+<li><p>clear()：清空集合。</p>
+</li>
+</ul>
+<p><strong>遍历方法：遍历方法（遍历顺序为插入顺序）</strong></p>
+<ul>
+<li>keys()：返回一个包含集合中所有键的迭代器。</li>
+<li>values()：返回一个包含集合中所有值得迭代器。</li>
+<li>entries()：返回一个包含Set对象中所有元素得键值对迭代器。</li>
+<li>forEach(callbackFn, thisArg)：用于对集合成员执行callbackFn操作，如果提供了 thisArg 参数，回调中的this会是这个参数，没有返回值。</li>
+</ul>
+<p><img src="/post/34209/image-20230518202923870.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="WeakSet："><a href="#WeakSet：" class="headerlink" title="WeakSet："></a><strong>WeakSet：</strong></h3><p>WeakSet 对象允许你将弱引用对象储存在一个集合中。</p>
+<p>WeakSet 与 Set 的区别：</p>
+<p>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以。<br>WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的应用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素。</p>
+<ul>
+<li>add(value)：在WeakSet 对象中添加一个元素value。</li>
+<li>has(value)：判断 WeakSet 对象中是否包含value。</li>
+<li>delete(value)：删除元素 value。</li>
+</ul>
+<h3 id="字典（Map）："><a href="#字典（Map）：" class="headerlink" title="字典（Map）："></a><strong>字典（Map）：</strong></h3><ul>
+<li>是一组键值对的结构，具有极快的查找速度。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()<br><span class="hljs-keyword">const</span> o = &#123;<span class="hljs-attr">p</span>: <span class="hljs-string">&#x27;haha&#x27;</span>&#125;<br>m.<span class="hljs-title function_">set</span>(o, <span class="hljs-string">&#x27;content&#x27;</span>)<br>m.<span class="hljs-title function_">get</span>(o)	<span class="hljs-comment">// content</span><br>m.<span class="hljs-title function_">has</span>(o)	<span class="hljs-comment">// true</span><br>m.<span class="hljs-title function_">delete</span>(o)	<span class="hljs-comment">// true</span><br>m.<span class="hljs-title function_">has</span>(o)	<span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>操作方法：</strong></p>
+<ul>
+<li><p>set(key, value)：向字典中添加新元素。</p>
+</li>
+<li><p>get(key)：通过键查找特定的数值并返回。</p>
+</li>
+<li><p>has(key)：判断字典中是否存在键key。</p>
+</li>
+<li><p>delete(key)：通过键 key 从字典中移除对应的数据。</p>
+</li>
+<li><p>clear()：将这个字典中的所有元素删除。</p>
+</li>
+</ul>
+<p><strong>遍历方法：</strong></p>
+<ul>
+<li>Keys()：将字典中包含的所有键名以迭代器形式返回。</li>
+<li>values()：将字典中包含的所有数值以迭代器形式返回。</li>
+<li>entries()：返回所有成员的迭代器。</li>
+<li>forEach()：遍历字典的所有成员。</li>
+</ul>
+<p><img src="/post/34209/image-20230518202851930.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap:"></a>WeakMap:</h3><p>WeakMap 对象是一组键值对的集合，其中的键是弱引用对象，而值可以是任意。<br>注意，WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用。<br>WeakMap 中，每个键对自己所引用对象的引用都是弱引用，在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收（相应的key则变成无效的），所以，WeakMap 的 key 是不可枚举的。</p>
+<p><strong>方法：</strong></p>
+<ul>
+<li>has(key)：判断是否有 key 关联对象。</li>
+<li>get(key)：返回key关联对象（没有则则返回 undefined）。</li>
+<li>set(key)：设置一组key关联对象。</li>
+<li>delete(key)：移除 key 的关联对象。</li>
+</ul>
+<p>总结:<br>Set：<br>成员唯一、无序且不重复。<br>[value, value]，键值与键名是一致的（或者说只有键值，没有键名）。<br>可以遍历，方法有：add、delete、has。<br>WeakSet：<br>成员都是对象。<br>成员都是弱引用，可以被垃圾回收机制回收，可以用来保存DOM节点，不容易造成内存泄漏。<br>不能遍历，方法有add、delete、has。<br>Map：<br>本质上是键值对的集合，类似集合。<br>可以遍历，方法很多可以跟各种数据格式转换。<br>WeakMap：<br>只接受对象作为键名（null除外），不接受其他类型的值作为键名。<br>键名是弱引用，键值可以是任意的，键名所指向的对象可以被垃圾回收，此时键名是无效的<br>不能遍历，方法有get、set、has、delete。</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="JavaScript-函数语法"><a href="#JavaScript-函数语法" class="headerlink" title="JavaScript 函数语法"></a>JavaScript 函数语法</h2><p>函数就是包裹在花括号中的代码块，前面使用了关键词 function：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> *functionname*()<br>&#123;<br>  *<span class="hljs-comment">// 执行代码*</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="调用带参数的函数"><a href="#调用带参数的函数" class="headerlink" title="调用带参数的函数"></a>调用带参数的函数</h2><p>在调用函数时，您可以向其传递值，这些值被称为参数。</p>
+<p>这些参数可以在函数中使用。</p>
+<p>您可以发送任意多的参数，由逗号 (,) 分隔：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">myFunction</span>(*argument1,argument2*)<br></code></pre></td></tr></table></figure>
+
+<p>当您声明函数时，请把参数作为变量来声明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunction</span>(<span class="hljs-params">***var1***,***var2***</span>)<br>&#123;<br>*代码*<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="带有返回值的函数"><a href="#带有返回值的函数" class="headerlink" title="带有返回值的函数"></a>带有返回值的函数</h2><p>有时，我们会希望函数将值返回调用它的地方。</p>
+<p>通过使用 return 语句就可以实现。</p>
+<p>在使用 return 语句时，函数会停止执行，并返回指定的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunction</span>(<span class="hljs-params"></span>)<br>&#123;<br>  <span class="hljs-keyword">var</span> x=<span class="hljs-number">5</span>;<br>  <span class="hljs-keyword">return</span> x;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="arguments传递参数"><a href="#arguments传递参数" class="headerlink" title="arguments传递参数"></a>arguments传递参数</h2><p><img src="/post/34209/image-20230519083641250.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/34209/image-20230519083756871.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="可变参数rest"><a href="#可变参数rest" class="headerlink" title="可变参数rest"></a>可变参数rest</h2><h3 id="形参和实参"><a href="#形参和实参" class="headerlink" title="形参和实参"></a>形参和实参</h3><p>在了解不定参数和rest语法之前我们先介绍下参数的概念。JavaScript的参数有形参(parameter)和实参(argument)，形参相当于函数中定义的变量，实参就是运行函数调用时传入的参数。简单的说，形参就是函数声明时的变量，实参是我们调用该函数时传入的具体参数。</p>
+<p>例如下面代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a,b</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a+b);<br>    &#125;<br>    <span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>); <span class="hljs-comment">// 输出 5</span><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>代码中f(a, b)中的a和b就是形参，f(1,4)中的1和4就是实参。</p>
+<h3 id="不定参数"><a href="#不定参数" class="headerlink" title="不定参数"></a>不定参数</h3><p>谈到不定参数，我们就必须要了解arguments对象。</p>
+<p>arguments对象是一个类数组对象(但不是Array的实例)，因此可以使用中括号语法访问其中的元素(第一个参数是 arguments[0]，第二个参数是 arguments[1])。而要确定传进来多少个参数，可以访问arguments.length属性。</p>
+<p>arguments对象是函数中默认就有的对象，它可以接收到多个不定数量的参数，并且以数组的形式存在。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a,f,t,...rest</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(rest);<br>    &#125;<br>    <span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>); <span class="hljs-comment">//输出[5,6]</span><br>    <br>	<span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">...rest</span>)&#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(rest);<br>	&#125;<br>    <span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>);   <span class="hljs-comment">// 输出[1,3,4,5,6]</span><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>当不确定要传入多少参数时可以使用 …rest 表示，rest是一个数组，数组中的数据是没有对应形参的数据。</strong></p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>函数作用域。。。同Java</p>
+<p>有同名变量时，函数会屏蔽外部变量</p>
+<p><img src="/post/34209/image-20230519110814645.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/34209/image-20230519110844899.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/34209/image-20230519110921863.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/34209/image-20230519111020377.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="提升作用域"><a href="#提升作用域" class="headerlink" title="提升作用域"></a>提升作用域</h3><p><img src="/post/34209/image-20230519104838614.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>所有变量定义都放在函数头部</li>
+</ul>
+<p><img src="/post/34209/image-20230519111140649.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="全局函数"><a href="#全局函数" class="headerlink" title="全局函数"></a>全局函数</h3><p><img src="/post/34209/image-20230519111208967.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/34209/image-20230519110025537.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h3><p><img src="/post/34209/image-20230519110355491.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p><img src="/post/34209/image-20230519110731953.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><img src="/post/34209/image-20230519112149328.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p><img src="/post/34209/image-20230519112724368.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p><img src="/post/34209/image-20230519112743282.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h1><p><strong>基本使用</strong></p>
+<p><img src="/post/34209/image-20230519171718402.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>转换</strong></p>
+<p><img src="/post/34209/image-20230519171838467.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><h2 id="什么是-JSON"><a href="#什么是-JSON" class="headerlink" title="什么是 JSON?"></a>什么是 JSON?</h2><ul>
+<li>JSON 英文全称 <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation</li>
+<li>JSON 是一种轻量级的数据交换格式。</li>
+<li>JSON是独立的语言 *****</li>
+<li>JSON 易于理解。</li>
+</ul>
+<h2 id="JSON-实例"><a href="#JSON-实例" class="headerlink" title="JSON 实例"></a>JSON 实例</h2><p>以下 JSON 语法定义了 sites 对象: 3 条网站信息（对象）的数组:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<span class="hljs-string">&quot;sites&quot;</span>:[ &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;Runoob&quot;</span>, <span class="hljs-string">&quot;url&quot;</span>:<span class="hljs-string">&quot;www.runoob.com&quot;</span>&#125;,     <br>           &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;Google&quot;</span>, <span class="hljs-string">&quot;url&quot;</span>:<span class="hljs-string">&quot;www.google.com&quot;</span>&#125;,    <br>           &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;Taobao&quot;</span>, <span class="hljs-string">&quot;url&quot;</span>:<span class="hljs-string">&quot;www.taobao.com&quot;</span>&#125; ]&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="JSON-语法规则"><a href="#JSON-语法规则" class="headerlink" title="JSON 语法规则"></a>JSON 语法规则</h2><ul>
+<li>数据为 键/值 对。</li>
+<li>数据由逗号分隔。</li>
+<li>大括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+<h2 id="JSON-字符串转换为-JavaScript-对象"><a href="#JSON-字符串转换为-JavaScript-对象" class="headerlink" title="JSON 字符串转换为 JavaScript 对象"></a>JSON 字符串转换为 JavaScript 对象</h2><p>首先，创建 JavaScript 字符串，字符串为 JSON 格式的数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> text = <span class="hljs-string">&#x27;&#123; &quot;sites&quot; : [&#x27;</span> +<br><span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Runoob&quot; , &quot;url&quot;:&quot;www.runoob.com&quot; &#125;,&#x27;</span> +<br><span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Google&quot; , &quot;url&quot;:&quot;www.google.com&quot; &#125;,&#x27;</span> +<br><span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Taobao&quot; , &quot;url&quot;:&quot;www.taobao.com&quot; &#125; ]&#125;&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>然后，使用 JavaScript 内置函数 JSON.parse() 将字符串转换为 JavaScript 对象:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(text);<br></code></pre></td></tr></table></figure>
+
+<p>最后，在你的页面中使用新的 JavaScript 对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> text = <span class="hljs-string">&#x27;&#123; &quot;sites&quot; : [&#x27;</span> +<br>    <span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Runoob&quot; , &quot;url&quot;:&quot;www.runoob.com&quot; &#125;,&#x27;</span> +<br>    <span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Google&quot; , &quot;url&quot;:&quot;www.google.com&quot; &#125;,&#x27;</span> +<br>    <span class="hljs-string">&#x27;&#123; &quot;name&quot;:&quot;Taobao&quot; , &quot;url&quot;:&quot;www.taobao.com&quot; &#125; ]&#125;&#x27;</span>;<br>    <br>obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(text);<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = obj.<span class="hljs-property">sites</span>[<span class="hljs-number">1</span>].<span class="hljs-property">name</span> + <span class="hljs-string">&quot; &quot;</span> + obj.<span class="hljs-property">sites</span>[<span class="hljs-number">1</span>].<span class="hljs-property">url</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><h2 id="原型指定"><a href="#原型指定" class="headerlink" title="原型指定"></a>原型指定</h2><p>定义了一个对象，可以通过<code>__proto__</code>(注意是前后分别两个下划线)来指定原型对象，相当于继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//定义原型对象</span><br><span class="hljs-keyword">var</span> person = &#123;<br>            <span class="hljs-attr">name</span>:<span class="hljs-string">&quot;xiao&quot;</span>,<br>            <span class="hljs-attr">age</span>:<span class="hljs-number">18</span>,<br>            <span class="hljs-attr">run</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>                <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;run...&quot;</span>)<br>            &#125;<br>        &#125;<br><br><span class="hljs-comment">//新对象</span><br><span class="hljs-keyword">var</span> son = &#123;<br>    <span class="hljs-attr">name</span>:<span class="hljs-string">&quot;wang&quot;</span><br>&#125;<br><span class="hljs-comment">//指定原型对象</span><br>son.<span class="hljs-property">__proto__</span>= person;<span class="hljs-comment">//可以使用原型对象的方法</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="class继承"><a href="#class继承" class="headerlink" title="class继承"></a>class继承</h2><h3 id="es5方式"><a href="#es5方式" class="headerlink" title="es5方式"></a>es5方式</h3><p><img src="/post/34209/image-20230519200407195.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="es6方式"><a href="#es6方式" class="headerlink" title="es6方式"></a>es6方式</h3><ol>
+<li>定义一个类、属性、方法</li>
+</ol>
+<p><img src="/post/34209/image-20230519200805498.png" srcset="/img/loading.gif" lazyload alt="image-20230519200805498"></p>
+<p>继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NewStudent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Student</span>&#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name,grade</span>)&#123;<br>        <span class="hljs-variable language_">super</span>(name);<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">grade</span> = grade;<br>    &#125;<br>    <br>    <span class="hljs-comment">//定义本类的方法</span><br>    <span class="hljs-title function_">hi</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;hi&quot;</span>)<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">var</span> newstu = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewStudent</span>(<span class="hljs-string">&quot;li&quot;</span>,<span class="hljs-number">100</span>);<br><br></code></pre></td></tr></table></figure>
+
+<p>本质还是原型</p>
+<p><img src="/post/34209/image-20230519201552554.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><h3 id="prototype可以找到实现原型"><a href="#prototype可以找到实现原型" class="headerlink" title="prototype可以找到实现原型"></a>prototype可以找到实现原型</h3><p><img src="/post/34209/image-20230519202007217.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../8016/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端基础-JavaScript高级</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../29974/">
+                        <span class="hidden-mobile">前端基础-CSS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('../../css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8875589b25f8feff97f0","clientSecret":"22b9d54c5845ddb41a0d0f82b22fc4f935607650","repo":"BugDev-Parker.github.io","owner":"BugDev-Parker","admin":["BugDev-Parker"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'b2a6cddaada118bcae74d46c3beabed9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>

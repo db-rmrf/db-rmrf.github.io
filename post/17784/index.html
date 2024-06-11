@@ -14,26 +14,26 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Parker">
-  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  <meta name="keywords" content="Java|network|开发|技术|博客">
   
     <meta name="description" content="给linux基础比较弱的童鞋和我写的一篇基础教程 前言引述一下什么是云计算 相关：虚拟机下cent os开启ssh 什么是虚拟化kernel-based virtual machine（基于内核的虚拟机） 虚拟化，是指通过虚拟化技术将一台计算机虚拟为多台逻辑计算机。在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可运行不同的操作系统，并且应用程序都可以在相互独立的空间内运行而互不影响，从而显著">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cent os的KVM虚拟化部署">
 <meta property="og:url" content="https://bugdev.tk/post/17784/index.html">
-<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:site_name" content="aixloh&#39;Blog">
 <meta property="og:description" content="给linux基础比较弱的童鞋和我写的一篇基础教程 前言引述一下什么是云计算 相关：虚拟机下cent os开启ssh 什么是虚拟化kernel-based virtual machine（基于内核的虚拟机） 虚拟化，是指通过虚拟化技术将一台计算机虚拟为多台逻辑计算机。在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可运行不同的操作系统，并且应用程序都可以在相互独立的空间内运行而互不影响，从而显著">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://bugdev.tk/img/post_to_index/kvm.jpg">
 <meta property="article:published_time" content="2021-12-09T11:46:00.000Z">
 <meta property="article:modified_time" content="2022-04-11T05:47:59.947Z">
-<meta property="article:author" content="Parker">
+<meta property="article:author" content="aixloh">
 <meta property="article:tag" content="kvm">
 <meta property="article:tag" content="kvm部署">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/kvm.jpg">
   
   
-  <title>cent os的KVM虚拟化部署 - BugDev - Parker&#39;Blog</title>
+  <title>cent os的KVM虚拟化部署 - aixloh&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -74,7 +74,7 @@
   </script>
   <script  src="../../js/utils.js" ></script>
   <script  src="../../js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="aixloh'Blog" type="application/atom+xml">
 </head>
 
 
@@ -83,7 +83,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="../../index.html">
-      <strong>BugDev - Parker&#39;Blog</strong>
+      <strong>db-rmrf - aixloh&#39;Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -504,30 +504,6 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
   
 
@@ -585,8 +561,6 @@
   
 
 
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

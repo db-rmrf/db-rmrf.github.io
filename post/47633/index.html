@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="aixloh">
+  <meta name="keywords" content="Java|network|开发|技术|博客">
+  
+    <meta name="description" content="数据库简单地说，救据库（英文Daabase）就是一个存放数据的仓库。在日常工作中，常常需要把等些相关的数据放进这样的仓库，并根据管理的需要进行相应的处理。 DBMS数据库管理系统（DatabaseManagementSystem）是一种操纵和管理数据库的大型软件，用于建立、使用和维护数据库，简称DBMS。它对数据库进行统一的管理和控制，以保证数据库的安全性和完整性。用户通过DBMS访问数据库中的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql数据库基础">
+<meta property="og:url" content="https://bugdev.tk/post/47633/index.html">
+<meta property="og:site_name" content="aixloh&#39;Blog">
+<meta property="og:description" content="数据库简单地说，救据库（英文Daabase）就是一个存放数据的仓库。在日常工作中，常常需要把等些相关的数据放进这样的仓库，并根据管理的需要进行相应的处理。 DBMS数据库管理系统（DatabaseManagementSystem）是一种操纵和管理数据库的大型软件，用于建立、使用和维护数据库，简称DBMS。它对数据库进行统一的管理和控制，以保证数据库的安全性和完整性。用户通过DBMS访问数据库中的数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bugdev.tk/img/post_to_index/mysql.jpg">
+<meta property="article:published_time" content="2023-04-14T05:09:00.000Z">
+<meta property="article:modified_time" content="2024-06-11T06:36:30.316Z">
+<meta property="article:author" content="aixloh">
+<meta property="article:tag" content="Java|network|开发|技术|博客">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/mysql.jpg">
+  
+  
+  <title>mysql数据库基础 - aixloh&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="aixloh'Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>db-rmrf - aixloh&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/7.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="mysql数据库基础">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-04-14 13:09" pubdate>
+        2023年4月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      21k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      172 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql数据库基础</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p>简单地说，救据库（英文Daabase）就是一个存放数据的仓库。在日常工作中，常常需要把等些相关的数据放进这样的仓库，并根据管理的需要进行相应的处理。</p>
+<h2 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h2><p><strong>数据库管理系统</strong>（DatabaseManagementSystem）是一种<strong>操纵和管理数据库</strong>的大型软件，用于建立、使用和维护数据库，简称DBMS。它对数据库进行统一的管理和控制，以保证数据库的安全性和完整性。用户通过DBMS<br>访问数据库中的数据，数据库管理员也通过dbms进行数据库的维护工作。它可使多个应用程序和用户用不同的方法在同时或不同时刻去建立，修改和询问数据库。大部分DBMS提供数据定义语言DDL（DataDefinitionLanguage）和数据操作语言DML（DataManipulationLanguage），供用户定义数据库的模式结构与权限约束，实现对数据的追加、删除等操作，以及数据库控制语言DCL（DataControlLanguage），用来设置或更改数据库用户或角色权限的语句</p>
+<ul>
+<li><strong>数据库和DBMS不是同一个东西</strong></li>
+</ul>
+<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li><p>配置环境变量，bin目录配置mysql path</p>
+</li>
+<li><p>新建配置文件my.ini</p>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs js">[mysqld]<br>basedir=<span class="hljs-attr">G</span>:\<span class="hljs-title class_">Loh</span>\<span class="hljs-title class_">Code</span>_usefile\mysql-<span class="hljs-number">8.0</span><span class="hljs-number">.32</span>-winx64<span class="hljs-comment">//配置目录</span><br>datadir=<span class="hljs-attr">G</span>:\<span class="hljs-title class_">Loh</span>\<span class="hljs-title class_">Code</span>_usefile\mysql-<span class="hljs-number">8.0</span><span class="hljs-number">.32</span>-winx64\data<span class="hljs-comment">//配置data目录</span><br>port=<span class="hljs-number">3306</span><br>skip-grant-tables #（<span class="hljs-number">8.0</span>版本需要注释掉该语句）<br></code></pre></td></tr></table></figure></li>
+<li><p>启动cmd,切换到bin目录，输入<code>mysqld --install</code>安装</p>
+</li>
+<li><p>输入<code>mysqld --initialize-insecure --user=mysql</code>初始化数据文件</p>
+</li>
+<li><p>输入<code>net start mysql</code>启动mysql后，需要以<code>管理员</code>身份运行，否则会报错：<img src="/post/47633/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1eXVqaW4xOTk3,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>输入<code>mysql -u root -p密码</code>（注意-p后不可以有空格）</p>
+</li>
+<li><p>```js<br>update mysql.user set authentication string=password(‘123456’) where user=’root’ and Host=’localhost’<br>#8.0版本用这个改密码alter user ‘root‘@’localhost’ identified by ‘123456’;<br>#sqlyog用这个更新密码ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’(password改成要的密码)<br>flush privileges</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><br><br><br>![](<span class="hljs-link">mysql数据库基础/image-20230524193822898.png</span>)<br><br><br><br><span class="hljs-strong">**mysql关键字不区分大小写**</span><br><br><span class="hljs-section"># 数据库操作</span><br><br><span class="hljs-section">## 数据库操作(了解)</span><br><br>创建新数据库<br><br><span class="hljs-code">```sql</span><br><span class="hljs-code">create database [if not exists] 数据库名;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> database if <span class="hljs-keyword">exists</span> 数据库名;<br></code></pre></td></tr></table></figure>
+
+<p>切换数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">use 数据库名;<br></code></pre></td></tr></table></figure>
+
+<p>查看数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> databases;<br></code></pre></td></tr></table></figure>
+
+<p>关键字</p>
+<ul>
+<li>create</li>
+<li>drop</li>
+</ul>
+<h2 id="列类型"><a href="#列类型" class="headerlink" title="列类型"></a>列类型</h2><h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">大小</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">TINYINT</td>
+<td align="left">1 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">SMALLINT</td>
+<td align="left">2 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">MEDIUMINT</td>
+<td align="left">3 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">INT或INTEGER</td>
+<td align="left">4 Bytes</td>
+<td>标准类型，存储int</td>
+</tr>
+<tr>
+<td align="left">BIGINT</td>
+<td align="left">8 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">FLOAT</td>
+<td align="left">4 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">DOUBLE</td>
+<td align="left">8 Bytes</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">DECIMAL</td>
+<td align="left">对DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2</td>
+<td>字符串形式浮点数，金融计算多使用</td>
+</tr>
+</tbody></table>
+<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><p>字符串类型指CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET。该节描述了这些类型如何工作以及如何在查询中使用这些类型。</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">大小</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CHAR</td>
+<td align="left">0-255 bytes</td>
+<td align="left">定长字符串</td>
+</tr>
+<tr>
+<td align="left">VARCHAR</td>
+<td align="left">0-65535 bytes</td>
+<td align="left">变长字符串</td>
+</tr>
+<tr>
+<td align="left">TINYTEXT</td>
+<td align="left">0-255 bytes</td>
+<td align="left">短文本字符串</td>
+</tr>
+<tr>
+<td align="left">TEXT</td>
+<td align="left">0-65 535 bytes</td>
+<td align="left">长文本数据</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>：char(n) 和 varchar(n) 中括号中 n 代表字符的个数，并不代表字节个数，比如 CHAR(30) 就可以存储 30 个字符。</p>
+<p>CHAR 和 VARCHAR 类型类似，但它们保存和检索的方式不同。它们的最大长度和是否尾部空格被保留等方面也不同。在存储或检索过程中不进行大小写转换。</p>
+<p>BINARY 和 VARBINARY 类似于 CHAR 和 VARCHAR，不同的是它们包含二进制字符串而不要非二进制字符串。也就是说，它们包含字节字符串而不是字符字符串。这说明它们没有字符集，并且排序和比较基于列值字节的数值值。</p>
+<p>BLOB 是一个二进制大对象，可以容纳可变数量的数据。有 4 种 BLOB 类型：TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB。它们区别在于可容纳存储范围不同。</p>
+<p>有 4 种 TEXT 类型：TINYTEXT、TEXT、MEDIUMTEXT 和 LONGTEXT。对应的这 4 种 BLOB 类型，可存储的最大长度不同，可根据实际情况选择。</p>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><p>表示时间值的日期和时间类型为DATETIME、DATE、TIMESTAMP、TIME和YEAR。</p>
+<p>每个时间类型有一个有效值范围和一个”零”值，当指定不合法的MySQL不能表示的值时使用”零”值。</p>
+<p>TIMESTAMP类型有专有的自动更新特性，将在后面描述。</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">大小 ( bytes)</th>
+<th align="left">范围</th>
+<th align="left">格式</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DATE</td>
+<td align="left">3</td>
+<td align="left">1000-01-01/9999-12-31</td>
+<td align="left">YYYY-MM-DD</td>
+<td align="left">日期值</td>
+</tr>
+<tr>
+<td align="left">TIME</td>
+<td align="left">3</td>
+<td align="left">‘-838:59:59’/‘838:59:59’</td>
+<td align="left">HH:MM:SS</td>
+<td align="left">时间值或持续时间</td>
+</tr>
+<tr>
+<td align="left">YEAR</td>
+<td align="left">1</td>
+<td align="left">1901/2155</td>
+<td align="left">YYYY</td>
+<td align="left">年份值</td>
+</tr>
+<tr>
+<td align="left">DATETIME</td>
+<td align="left">8</td>
+<td align="left">‘1000-01-01 00:00:00’ 到 ‘9999-12-31 23:59:59’</td>
+<td align="left">YYYY-MM-DD hh:mm:ss</td>
+<td align="left">混合日期和时间值</td>
+</tr>
+<tr>
+<td align="left">TIMESTAMP</td>
+<td align="left">4</td>
+<td align="left">‘1970-01-01 00:00:01’ UTC 到 ‘2038-01-19 03:14:07’ UTC结束时间是第 <strong>2147483647</strong> 秒，北京时间 <strong>2038-1-19 11:14:07</strong>，格林尼治时间 2038年1月19日 凌晨 03:14:07</td>
+<td align="left">YYYY-MM-DD hh:mm:ss</td>
+<td align="left">混合日期和时间值，时间戳</td>
+</tr>
+</tbody></table>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>空值，未知</p>
+<h2 id="字段属性（重点）"><a href="#字段属性（重点）" class="headerlink" title="字段属性（重点）"></a>字段属性（重点）</h2><p>Unsigned：</p>
+<ul>
+<li>无符号整数</li>
+<li>声明该列不能为负数</li>
+</ul>
+<p>Zerofill：</p>
+<ul>
+<li>0填充的</li>
+<li>不足的位数使用0来填充</li>
+</ul>
+<p>自增：AUTO_INTCREMENT</p>
+<ul>
+<li>通常理解为自增，自动在上一条记录的基础上+1（默认）</li>
+<li>用来设计唯一主键index，必须是整数类型</li>
+<li>自定义设计主键自增的起始值和步长</li>
+</ul>
+<p>非空 NULL not null</p>
+<ul>
+<li>not null非空字段不赋值即报错</li>
+<li>null，不填默认为null</li>
+</ul>
+<p>默认</p>
+<ul>
+<li>设置默认值</li>
+<li>sex 默认值为男，不填值则使用默认值</li>
+</ul>
+<p>注释：COMMENT</p>
+<ul>
+<li>注释</li>
+</ul>
+<p><img src="/post/47633/image-20230525085536865.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="创建表（重点）"><a href="#创建表（重点）" class="headerlink" title="创建表（重点）"></a>创建表（重点）</h2><p>创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> teacher( <br>    `id` <span class="hljs-type">INT</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="hljs-string">&#x27;tid&#x27;</span>,<br>    `name` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;anonymous&#x27;</span> COMMENT <span class="hljs-string">&#x27;tname&#x27;</span>, <br>    `psssword` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;123456&#x27;</span> COMMENT <span class="hljs-string">&#x27;tpwd&#x27;</span>,<br>    `sex` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;女&#x27;</span> COMMENT <span class="hljs-string">&#x27;sex&#x27;</span>,<br>    `brithday` DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;bornday&#x27;</span>,<br>    `address` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;address&#x27;</span>,<br>    `email` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;mail&#x27;</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY (`id`) <br>)ENGINE<span class="hljs-operator">=</span>INNODB <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4,<span class="hljs-keyword">COLLATE</span><span class="hljs-operator">=</span>utf8mb4_general_ci;<br><br><br><br><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> [IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span>] 表名(<br>`字段名` 列类型 [字段属性] [索引] [注释],<br>`字段名` 列类型 [字段属性] [索引] [注释],<br>`字段名` 列类型 [字段属性] [索引] [注释],<br>[ <span class="hljs-keyword">PRIMARY</span> KEY (`字段名`) ]<br>)[表类型] [字符集设置] [注释]<br></code></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>逆向显示创建命令</p>
+<p>假设有一个库和一张表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> database `库名`; <span class="hljs-comment">--查看库的定义</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> `表名`; <span class="hljs-comment">---查看该表的定义</span><br><span class="hljs-keyword">desc</span> `表名` <span class="hljs-comment">--显示表结构</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><p><img src="/post/47633/image-20230525100324860.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230525101709216.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230525101725652.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230525101824309.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><p><img src="/post/47633/image-20230525103810761.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230525103920349.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h3><h4 id="1）修改表名"><a href="#1）修改表名" class="headerlink" title="1）修改表名"></a>1）修改表名</h4><p>rename 原表名 to 新表名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">rename tb_txt <span class="hljs-keyword">to</span> tb_txt_new；<br></code></pre></td></tr></table></figure>
+
+<h4 id="2）修改列名"><a href="#2）修改列名" class="headerlink" title="2）修改列名"></a>2）修改列名</h4><p>alter table 表名 rename column 列名 to</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> tb_txt_new rename <span class="hljs-keyword">column</span> txtid <span class="hljs-keyword">to</span> tid；<br></code></pre></td></tr></table></figure>
+
+<h4 id="3）修改字段类型"><a href="#3）修改字段类型" class="headerlink" title="3）修改字段类型"></a>3）修改字段类型</h4><p>alter table 表名 modify（字段类型）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_txt_new modify（tid vachar2(<span class="hljs-number">20</span>))；<br></code></pre></td></tr></table></figure>
+
+<h4 id="4）添加列"><a href="#4）添加列" class="headerlink" title="4）添加列"></a>4）添加列</h4><p>alter table 表名 add 字段类型</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_txt <span class="hljs-keyword">new</span> <span class="hljs-keyword">add</span> col_test name varchar2(<span class="hljs-number">30</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="5）删除列"><a href="#5）删除列" class="headerlink" title="5）删除列"></a>5）删除列</h4><p>alter table 表名 drop column 字段</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tb_txt <span class="hljs-built_in">new</span> <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> col_test <span class="hljs-type">name</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="mysql数据管理"><a href="#mysql数据管理" class="headerlink" title="mysql数据管理"></a>mysql数据管理</h1><h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><p><img src="/post/47633/image-20230525111636069.png" srcset="/img/loading.gif" lazyload></p>
+<p>创建表操作时不指定外键</p>
+<p><img src="/post/47633/image-20230525111654621.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="DML-重点"><a href="#DML-重点" class="headerlink" title="DML(重点)"></a>DML(重点)</h1><h2 id="DML介绍"><a href="#DML介绍" class="headerlink" title="DML介绍"></a>DML介绍</h2><p>DML（DataManipulationlanguage数据操控语言）用于操作数据库对象中包含的数据。也就是说操作的单位是记录。</p>
+<p>Oracle数据库的DML表数据的操作有三种</p>
+<p><strong>①insert（插入）；②update（更新）；③delete（删除）。</strong></p>
+<h2 id="条件语句where"><a href="#条件语句where" class="headerlink" title="条件语句where"></a>条件语句where</h2><p>运算符类：&gt;,&lt;,&gt;=….</p>
+<p>between…and..    在xx和xx之间的</p>
+<p>and    等价与&amp;&amp;</p>
+<p>or    或</p>
+<h2 id="插入insert"><a href="#插入insert" class="headerlink" title="插入insert"></a>插入insert</h2><p><img src="/post/47633/image-20230525112632503.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过insert语句向指定的表中添加记录，添加记录时需要满足以下条件，类型和长度要兼容，（字段兼容值）；值满足约束，主键（唯一+非空），非空（必填），唯一（不重复），默认（没有填写使用默认值），检查（满足条件），外键（参考主表主键列的值）；个数必须相同，指定列，个数顺序与列<br>相同；没有指定，个数与表结构的列个数和顺序相同（nul也得占位，没有默认值）。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 [（字段列表）] <span class="hljs-keyword">values</span>（值列表）;<br></code></pre></td></tr></table></figure>
+
+<h3 id="默认方式添加"><a href="#默认方式添加" class="headerlink" title="默认方式添加"></a>默认方式添加</h3><p>insert into 表名 values（值列表）<br>此时的值列表顺序和个数以及类型需要和标结构一致，默认的，可以为空的列也都必须填上值。可以手写也可以从别的表中获取。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_user <span class="hljs-keyword">values</span>(<span class="hljs-number">1001</span>，<span class="hljs-string">&#x27;test&#x27;</span>，<span class="hljs-string">&#x27;test123&#x27;</span> ，<span class="hljs-keyword">null</span>，<span class="hljs-string">&#x27;女’，null，sysdate）;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_user_copy <span class="hljs-keyword">values</span>(<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> tb_user）；<br></code></pre></td></tr></table></figure>
+
+<h3 id="添加时指定列和顺序"><a href="#添加时指定列和顺序" class="headerlink" title="添加时指定列和顺序"></a>添加时指定列和顺序</h3><p>insert into表名（指定列）values（值列表）<br>此时的值列表要和指定的列个数、顺序、类型保持一致</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_user（username，userid，userpwd）<span class="hljs-keyword">values</span>（tom,<span class="hljs-number">1002</span>，tompwd）；<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_user_copy(username,userid,userpwd） <span class="hljs-keyword">values</span>(<span class="hljs-keyword">select</span> username userid，userpwd <span class="hljs-keyword">from</span> tb_user)<br></code></pre></td></tr></table></figure>
+
+<p><font color="red">当添加的记录中，存在外键关联时需要注意，可以采取先查询后添加的方式</font></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> tb_txt(txtid,title,userid）（<span class="hljs-number">1001</span>，title1，<span class="hljs-number">123</span>（<span class="hljs-keyword">select</span> userid <span class="hljs-keyword">from</span> tb_user <span class="hljs-keyword">where</span> username<span class="hljs-operator">=</span>随笔大师））;<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改update"><a href="#修改update" class="headerlink" title="修改update"></a>修改update</h2><p>通过update语句可以更新（修改）表中的记录值。</p>
+<p>update 表名 set 字段1=值1 [字段2=值2…] where 过滤行记录：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> tb_user <span class="hljs-keyword">set</span> userpwd<span class="hljs-operator">=</span><span class="hljs-number">8888</span> <span class="hljs-keyword">where</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> tb_user <span class="hljs-keyword">set</span> userpwd<span class="hljs-operator">=</span>good , age<span class="hljs-operator">=</span><span class="hljs-number">29</span> <span class="hljs-keyword">where</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;zzz&#x27;</span> <span class="hljs-keyword">and</span> pwd<span class="hljs-operator">=</span><span class="hljs-string">&#x27;123&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> tb_userset(username， userpwd）<span class="hljs-operator">=</span> （<span class="hljs-keyword">select</span>  <span class="hljs-string">&#x27;good&#x27;</span>，<span class="hljs-string">&#x27;block’ from dual） where userid=1；</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="删除delete"><a href="#删除delete" class="headerlink" title="删除delete"></a>删除delete</h2><p>通过delete语句可以删除表中的记录。（注意存在主外键约束的记录）<br>delete from表名where条件；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> tb_user <span class="hljs-keyword">where</span> userid<span class="hljs-operator">&lt;</span><span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> tb <span class="hljs-keyword">user</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="删除表的方式"><a href="#删除表的方式" class="headerlink" title="删除表的方式"></a>删除表的方式</h2><blockquote>
+<h3 id="TRUNCATE"><a href="#TRUNCATE" class="headerlink" title="TRUNCATE"></a>TRUNCATE</h3></blockquote>
+<p>TRUNCATE 表名</p>
+<p>TRUNCATE清空一个表，表结构和索引约束不会变</p>
+<p><img src="/post/47633/image-20230529090419060.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="DQL查询数据（重中重）"><a href="#DQL查询数据（重中重）" class="headerlink" title="DQL查询数据（重中重）"></a>DQL查询数据（重中重）</h1><h2 id="select基本结构和简单查询"><a href="#select基本结构和简单查询" class="headerlink" title="select基本结构和简单查询"></a>select基本结构和简单查询</h2><h3 id="select结构"><a href="#select结构" class="headerlink" title="select结构"></a>select结构</h3><p><img src="/post/47633/image-20230529154006183.png" srcset="/img/loading.gif" lazyload></p>
+<p>结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-operator">|</span>colname  [,...] <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span> [alias]<br></code></pre></td></tr></table></figure>
+
+<p>分析：<br>select 关键字 后面跟要查询的内容from关键字后面跟数据的来源<br>解析步骤：1)  from找来源 2) select挑数据<br>语法结构需记忆</p>
+<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><h4 id="1）查询所有"><a href="#1）查询所有" class="headerlink" title="1）查询所有"></a>1）查询所有</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2）查询部分字段"><a href="#2）查询部分字段" class="headerlink" title="2）查询部分字段"></a>2）查询部分字段</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列<span class="hljs-number">1</span> , 列<span class="hljs-number">2</span> 列n <span class="hljs-keyword">from</span> 表名;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3）按顺序查询"><a href="#3）按顺序查询" class="headerlink" title="3）按顺序查询"></a>3）按顺序查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 自定顺序列<span class="hljs-number">1</span> , 自定顺序列<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> 表名;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/post/47633/image-20230529093807277.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="去重、别名和排序"><a href="#去重、别名和排序" class="headerlink" title="去重、别名和排序"></a>去重、别名和排序</h2><h3 id="去重-distinct"><a href="#去重-distinct" class="headerlink" title="去重 distinct"></a>去重 distinct</h3><p>去除重复记录<br>结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> 列名 <span class="hljs-keyword">from</span> 表名;<br></code></pre></td></tr></table></figure>
+
+<h3 id="列别名"><a href="#列别名" class="headerlink" title="列别名"></a>列别名</h3><p>给列取名字<br>结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列名 改名 <span class="hljs-keyword">from</span> 表名;<br><span class="hljs-keyword">select</span> 列名 <span class="hljs-keyword">as</span> 改名 <span class="hljs-keyword">from</span> 表名;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>多列在<span class="hljs-keyword">from</span>前加，号再将列名 改名写上<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="排序-order-by"><a href="#排序-order-by" class="headerlink" title="排序  order by"></a>排序  order by</h3><p>将查询出来的结果按照指定顺序排序<br>结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列名<span class="hljs-number">1</span> , 列名<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> 表名 orer <span class="hljs-keyword">by</span> 列名(要按此排序) <span class="hljs-keyword">desc</span>(降序)<span class="hljs-operator">/</span><span class="hljs-keyword">asc</span>(升序);<br></code></pre></td></tr></table></figure>
+
+<h4 id="多字段排序"><a href="#多字段排序" class="headerlink" title="多字段排序"></a>多字段排序</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列名<span class="hljs-number">1</span> , 列名<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> 表名 orer <span class="hljs-keyword">by</span> 列名 <span class="hljs-keyword">desc</span>(降序)<span class="hljs-operator">/</span><span class="hljs-keyword">asc</span>(升序),列名 <span class="hljs-keyword">desc</span>(降序)<span class="hljs-operator">/</span><span class="hljs-keyword">asc</span>(升序);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>空值可以在语句末尾加<code>nulls first</code> 或 <code>nulls last</code></p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>当我们查询的数据需要经过筛选时，我们会给出一些条件，只有当表中的记录满足我们所给的条件，才会成为我们的目标数据，这就需要借助我们的条件查询。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 查询内容 <span class="hljs-keyword">from</span> 数据来源 <span class="hljs-keyword">where</span> 行记录条件<br></code></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><h4 id="条件运算"><a href="#条件运算" class="headerlink" title="条件运算"></a>条件运算</h4><p><strong>一般条件</strong>                   = 、&gt; 、&lt; 、&gt;= 、&lt;= 、</p>
+<p><strong>都表示不等于</strong>          &lt;&gt;、!=、^=、</p>
+<p>​                                 between and、in</p>
+<h4 id="连接条件运算"><a href="#连接条件运算" class="headerlink" title="连接条件运算"></a>连接条件运算</h4><p>and、or、not</p>
+<p>当查询条件有多个时，可能需要同时满足，或者只满足其中一个，或者不满足某个条件，则需要用到或。且。非</p>
+<h4 id="null运算nvl"><a href="#null运算nvl" class="headerlink" title="null运算nvl()"></a>null运算nvl()</h4><p>nul比较特殊需要单独处理<br>is null、is not null、 not…is null</p>
+<h3 id="where子句"><a href="#where子句" class="headerlink" title="where子句"></a>where子句</h3><p>判断条件不能直接得到，需要经过计算和过滤的</p>
+<p><img src="/post/47633/image-20230529102652403.png" srcset="/img/loading.gif" lazyload></p>
+<p>嵌套查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno <span class="hljs-operator">=</span> (<span class="hljs-keyword">select</span> deptno <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">where</span> dname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SALES&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="in具体值"><a href="#in具体值" class="headerlink" title="in具体值"></a>in具体值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">in</span> <span class="hljs-string">&#x27;xx&#x27;</span><br><span class="hljs-comment">--查询所有值条件为deptno为xx的具体条目</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="模糊查询-like"><a href="#模糊查询-like" class="headerlink" title="模糊查询 like"></a>模糊查询 like</h3><p>任意个任意字符 <strong>%</strong>   :占用若干字符（添加在字符前面表示可以有若干字符）</p>
+<p>一个任意的字符 <strong>_</strong>   ：占用一个字符</p>
+<p>当查询的条件为比较模糊时，可以使用模糊查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> ename <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%S%&#x27;</span> ;<br><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询emp表里ename列 含有S的属性<br>注意：内容区分大小写<br></code></pre></td></tr></table></figure>
+
+<h3 id="联表查询-join"><a href="#联表查询-join" class="headerlink" title="联表查询 join"></a>联表查询 join</h3><h4 id="七种JOIN理论"><a href="#七种JOIN理论" class="headerlink" title="七种JOIN理论"></a>七种JOIN理论</h4><p><img src="/post/47633/1852729-20210315212321942-482432758.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">--inner join</span><br><br><span class="hljs-keyword">SELECT</span> s.studentno,studentname,subjectno,studentresult <br><span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> s<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">result</span> <span class="hljs-keyword">AS</span> r<br><span class="hljs-keyword">ON</span> s.`studentno` <span class="hljs-operator">=</span>r.`studentno`;<br><br><span class="hljs-comment">--right join</span><br><br><span class="hljs-keyword">SELECT</span> s.studentno,studentname,subjectno,studentresult<br><span class="hljs-keyword">FROM</span> student s<br><span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">result</span> r<br><span class="hljs-keyword">ON</span> s.`studentno` <span class="hljs-operator">=</span>r.`studentno`;<br><br><span class="hljs-comment">--left join</span><br><br><span class="hljs-keyword">SELECT</span> s.studentno,studentname,subjectno,studentresult<br><span class="hljs-keyword">FROM</span> student s<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">result</span> r<br><span class="hljs-keyword">ON</span> s.`studentno` <span class="hljs-operator">=</span>r.`studentno`;<br></code></pre></td></tr></table></figure>
+
+<h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><p>把一个表分为两个表</p>
+<p>**example:**有一个表</p>
+<p><img src="/post/47633/image-20230529150520987.png" srcset="/img/loading.gif" lazyload></p>
+<p>对其作分类，父类的categoryid=子类的pid</p>
+<p><img src="/post/47633/image-20230529150632307.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230529150740747.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> f.`categoryname` <span class="hljs-keyword">AS</span> father ,s.`categoryname` <span class="hljs-keyword">AS</span> son<br><span class="hljs-keyword">FROM</span> category <span class="hljs-keyword">AS</span> f,category <span class="hljs-keyword">AS</span> s<br><span class="hljs-keyword">WHERE</span> f.categoryid <span class="hljs-operator">=</span> s.pid<br></code></pre></td></tr></table></figure>
+
+<h2 id="排序和分页"><a href="#排序和分页" class="headerlink" title="排序和分页"></a>排序和分页</h2><h3 id="order-by排序"><a href="#order-by排序" class="headerlink" title="order by排序"></a>order by排序</h3><p><img src="/post/47633/image-20230529154543250.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="子查询嵌套查询"><a href="#子查询嵌套查询" class="headerlink" title="子查询嵌套查询"></a>子查询嵌套查询</h2><p><img src="/post/47633/image-20230529192752781.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="mysql函数"><a href="#mysql函数" class="headerlink" title="mysql函数"></a>mysql函数</h1><h2 id="函数介绍"><a href="#函数介绍" class="headerlink" title="函数介绍"></a>函数介绍</h2><p>OracleSQL提供了用于执行特定操作的专用函数，这些函数大大增强了SQL语言的功能。函数可以接受零个或者多个输入参数，并且返回一个输出结果。这种由Oracle提供给我们的函数我们称为内置函数，除了有内置函数外还可以自定义函数。</p>
+<p>​    根据函数的返回结果，我们将函数分为单行函数和多行函数</p>
+<p>1、单行函数：对应在表记录时，一条记录返回一个结果。例如lower（x），将参数转换为小写</p>
+<p>2、多行函数：也称组函数或聚合函数（重点）：此类函数可同时对多条记录进行操作，并返回一个结果（重点）。例如max（x）求最大值。</p>
+<h2 id="常用单行函数"><a href="#常用单行函数" class="headerlink" title="常用单行函数"></a>常用单行函数</h2><h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>concat（x,y）连接字符串x和y</p>
+<p>instr(x，str，start，n）.在x中查找str，可以指定从start开始，也可以指定从第n次开始</p>
+<p>length（x）返回x的长度</p>
+<p>lower（x）x转换为小写</p>
+<p>upper（x）x转换为大写</p>
+<p>ltrim（xtrim_str）把x左边截去trim_str字符串，缺省截去空格</p>
+<p>rtrimt（xtrim_str）把x右边截去trim_str字符串，缺省截去空格</p>
+<p>replace（x，old，new）在x中查找old，并替换为new</p>
+<p>substr（x，start ，length）返回x的字符串，从start处开始，截取length个字符，缺省length，默认到结尾</p>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><p>abs（x）    x的绝对值</p>
+<p>ceil（x）    向上取整</p>
+<p>floor（x）    向下取整</p>
+<p>mod（x，y）    对x求y的余数</p>
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p>sysdate    当前系统时间 </p>
+<p>current_date    返回当前系统日期</p>
+<p>add_months（d1，n1）返回在日期d1基础上再加n1个月后新的日期</p>
+<p>last day(d1）返回日期d1所在月份最后一天的日期</p>
+<p>months_between(d1.d2）返回日期d1到日期d2之间的月数</p>
+<p>next_day(d1c1）返回日期d1在下周，星期几（参数c1）的日期</p>
+<h3 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h3><p>to_char（x.c）将日期或数据x按照c的格式转换为char数据类型</p>
+<p>to_date（x.c）将字符串x按照c的格式转换为日期</p>
+<p>to_number(x）将字符串x转化为数字型</p>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><p>组函数同时对多条记录进行操作，并返回一个结果</p>
+<p>count()    计数</p>
+<p><img src="/post/47633/image-20230529194330738.png" srcset="/img/loading.gif" lazyload></p>
+<p>avg()    平均值</p>
+<p>sum()    求和</p>
+<p>max()    最大值</p>
+<p>min()    最小值</p>
+<p><font color="red">注意：null不参与运算</font></p>
+<h3 id="group-by分组"><a href="#group-by分组" class="headerlink" title="group by分组"></a>group by分组</h3><p>group by分组，将满足条件的记录进一步按照某特性进行分组。提取每组记录中的共性</p>
+<p>结构：select…from…where….goup by….</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> deptno,<span class="hljs-built_in">count</span>(deptno) <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno;<br></code></pre></td></tr></table></figure>
+
+<h3 id="having过滤组信息"><a href="#having过滤组信息" class="headerlink" title="having过滤组信息"></a>having过滤组信息</h3><p>要获取的组信息也许要满足一定条件时，我们通过hving来过滤组的条件。</p>
+<p>结构：select…from…where…group by …having…</p>
+<h3 id="过滤行记录和组信息"><a href="#过滤行记录和组信息" class="headerlink" title="过滤行记录和组信息"></a>过滤行记录和组信息</h3><p>行记录的过滤是针对每条记录的筛选，组信息的过滤是针对组的筛选，是可以同时出现的，先筛选行，再过滤组。</p>
+<p>where筛选行，只能出现行信息</p>
+<p>having过滤组，只能出现组信息</p>
+<p>结构：select…from…where…groupby…having</p>
+<p><img src="/post/47633/image-20230529194732403.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-3伪列和虚表"><a href="#2-3伪列和虚表" class="headerlink" title="2.3伪列和虚表"></a>2.3伪列和虚表</h2><h3 id="2-3-1伪列和表达式"><a href="#2-3-1伪列和表达式" class="headerlink" title="2.3.1伪列和表达式"></a>2.3.1伪列和表达式</h3><p>说明：查询不存在的列即伪列，当需要的结果不能直接从表中得到需要经过计算来展示则可以使用伪列<br>+表达式实现</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-number">1</span> <span class="hljs-keyword">from</span> emps<br><span class="hljs-keyword">select</span> ename,<span class="hljs-number">1</span> <span class="hljs-keyword">from</span> emp；<br></code></pre></td></tr></table></figure>
+
+<p>查询员工的名称，工种，月工资，以及年薪（年薪=12个月的工资）<br>查询每个工资等级的平均工资（平均工资=（最低工资+最高工资）/2）</p>
+<h4 id="1）null处理-—nvl"><a href="#1）null处理-—nvl" class="headerlink" title="1）null处理 —nvl()"></a><strong>1）null处理 —nvl()</strong></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 条件<span class="hljs-operator">+</span>nvl(列，返回的数值) <span class="hljs-keyword">from</span> 表;<br></code></pre></td></tr></table></figure>
+
+<p>查询员工的名称，工种，工资，奖金，以及月收入（月收入=工资+奖金）</p>
+<h4 id="2）字符串拼接"><a href="#2）字符串拼接" class="headerlink" title="2）字符串拼接||"></a><strong>2）字符串拼接||</strong></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> 列名<span class="hljs-operator">/</span>条件<span class="hljs-operator">||</span><span class="hljs-string">&#x27;要拼接的字符串&#x27;</span> form 表名；<br></code></pre></td></tr></table></figure>
+
+<p>查询员工的员工编号，姓名，以及将员工姓名和工种进行拼接后的字段（员工姓名-工种）</p>
+<h3 id="2-3-2虚表dual"><a href="#2-3-2虚表dual" class="headerlink" title="2.3.2虚表dual"></a>2.3.2虚表dual</h3><p>​    dual是一个虚表，虚拟表，是用来构成select的语法规则，oracle保证dual里面永远只有一条记录。该表只有一行一列，它和其他表一样，可以执行插入、更新、删除操作，还可以执行drop操作。但是不要去执行drop表的操作，否则会使系统不能用，起不了数据库。</p>
+<p>​    dual主要用来选择系统变量或是求一个表达式的值。如果我们不需要从具体的表来取得表中数据，而是单纯地味了得到一些我们想得到的信息，并要通过select完成时，就要借助一个对象，这个对象就是dual。</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><p>谈到事务一般都是以下四点:</p>
+<p><strong>1.原子性(Atomicity)</strong><br>过去原子被认为是分割的最小单位, 类比事务, 事务是一个不可分割的工作单位, 事务中的操作要么全部成功要么全部失败.</p>
+<p> 这个过程包含两个步骤:</p>
+<p>1.A转给B 200元, A剩余600元</p>
+<p>2.B收到A 200元, B剩余400元</p>
+<p>原子性表示, 这两个步骤不可分割, 要么全部成功要么全部失败.</p>
+<p><strong>2.一致性(Consistency)</strong><br>事物提交前和提交后, 数据都是合法的一致性状态, 即使发生异常也不会破坏数据库的完整性约束.(符合逻辑运算)</p>
+<p>假设要求事务执行前后总有A的账户余额+B的账户余额=1000, 那么事务执行后该完整性约束仍然满足.因此这个事务就满足一致性.</p>
+<p><strong>3.隔离性(isolation)</strong><br>多个用户并发(同时)访问数据库时, 数据库为每一个用户都开启事物, 为了防止多个事物的操作数据相互干扰, 多个并发事物之间要相互隔离.隔离性通过事务的隔离级别来定义, 并用锁机制来保证写操作的隔离性, MVCC来保证读操作的隔离性.</p>
+<p> 假设A只有500元, 如果没有隔离性, 两个事务同时进行, 事务2可能会读取到事务1还未提交的数据.此时A就会转出700, 这显然是不符合逻辑的, 隔离性就是为了解决上述问题.</p>
+<p><strong>4.持久性(durability)</strong><br>一个事物一旦被提交, 它对数据库的改变就是永久的, 不管是断电还是机器故障也不会对其有任何影响, 通过事务中重做日志(redo log)来保证, 事务修改之前会将变更信息预写到 redo log中, 如果数据库宕机, 恢复后会读取redo log中的数据恢复数据.</p>
+<blockquote>
+<p>隔离会导致的一些问题</p>
+</blockquote>
+<p><img src="/post/47633/image-20230530082325772.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="手动处理事务"><a href="#手动处理事务" class="headerlink" title="手动处理事务"></a>手动处理事务</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> autocommit <span class="hljs-operator">=</span> <span class="hljs-number">0</span>	<span class="hljs-comment">/*关闭自动提交*/</span><br><span class="hljs-keyword">set</span> autocommit <span class="hljs-operator">=</span> <span class="hljs-number">1</span>	<span class="hljs-comment">/*开启自动提交*/</span><br><br><br><br><span class="hljs-comment">--事务的手动处理</span><br><span class="hljs-keyword">set</span> autocommit <span class="hljs-operator">=</span> <span class="hljs-number">0</span>	<span class="hljs-comment">/*关闭自动提交*/</span><br><br><span class="hljs-keyword">start</span> transcation <span class="hljs-comment">--标记一个事务的开始,之后sql都在同一个事务内</span><br><span class="hljs-keyword">insert</span> xxx<br><span class="hljs-keyword">insert</span> xxx<br><br><span class="hljs-comment">--提交:持久化(succes)</span><br><span class="hljs-keyword">commit</span><br><span class="hljs-comment">--回滚:回到某个位置(fail)</span><br><span class="hljs-keyword">rollback</span><br><br><span class="hljs-comment">--事务结束</span><br><span class="hljs-keyword">set</span> autocommit <span class="hljs-operator">=</span> <span class="hljs-number">1</span>	<span class="hljs-comment">/*开启自动提交*/</span><br><br><span class="hljs-comment">--了解</span><br><span class="hljs-keyword">savepoint</span> 名称 <span class="hljs-comment">--设置事务保存点</span><br><span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">savepoint</span> 名称  <span class="hljs-comment">--回滚到保存点</span><br><span class="hljs-keyword">release</span> <span class="hljs-keyword">savepoint</span> 名称  <span class="hljs-comment">--撤销保存点</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模拟转账场景</p>
+</blockquote>
+<p><img src="/post/47633/image-20230530083834984.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li><p>主键索引</p>
+<ul>
+<li>唯一标识，主键不可重复，只能有一列作为主键</li>
+</ul>
+</li>
+<li><p>唯一索引</p>
+<ul>
+<li>避免重复列出现，唯一索引可以重复，多个列都可以标识为唯一索引</li>
+</ul>
+</li>
+<li><p>常规索引</p>
+<ul>
+<li>默认的，index，key关键字来设置</li>
+</ul>
+</li>
+<li><p>全文索引</p>
+<ul>
+<li>在特定引擎下才有 MyISAM</li>
+<li>快速定位数据</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">--索引的使用</span><br><span class="hljs-comment">--1.在创建表时给字段增加索引</span><br><span class="hljs-comment">--2.创建完毕后增加索引</span><br><br><span class="hljs-comment">--显示所有索引</span><br><span class="hljs-keyword">show</span> index <span class="hljs-keyword">from</span> student<br><span class="hljs-comment">--show index from 表名</span><br><br><br><span class="hljs-comment">--增加一个全文索引(索引名) 列名</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> school.student <span class="hljs-keyword">add</span> fulltext index `studentname`(`studentname`)<br><br><span class="hljs-comment">--explain 分析sql执行情况</span><br>explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student; <span class="hljs-comment">--非全文索引</span><br><br>explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student <span class="hljs-keyword">where</span> <span class="hljs-keyword">match</span>(studentname) against(<span class="hljs-string">&#x27;刘&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="/post/47633/image-20230530201818773.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="权限管理和备份"><a href="#权限管理和备份" class="headerlink" title="权限管理和备份"></a>权限管理和备份</h1><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-comment">--创建用户 </span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> loh IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;123456&#x27;</span><br><br><span class="hljs-comment">--修改当前用户密码</span><br><span class="hljs-keyword">SET</span> PASSWORD <span class="hljs-operator">=</span> PASSWORD(<span class="hljs-string">&#x27;12345678&#x27;</span>)<br><span class="hljs-comment">--修改指定用户密码</span><br><span class="hljs-keyword">SET</span> PASSWORD <span class="hljs-keyword">FOR</span> loh@<span class="hljs-operator">%</span> <span class="hljs-operator">=</span> PASSWORD(<span class="hljs-string">&#x27;12345678&#x27;</span>)<br><br><span class="hljs-comment">--重命名 rename user 旧名字 to 新名字</span><br>rename <span class="hljs-keyword">user</span> loh <span class="hljs-keyword">to</span> loh2<br><br><span class="hljs-comment">--用户授权all privileges全部权限，库，表</span><br><span class="hljs-comment">--all privileges权限，包含除授权权限外的全部权限</span><br><span class="hljs-keyword">grant</span> <span class="hljs-keyword">all</span> privileges <span class="hljs-keyword">on</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">to</span> loh2<br><br><span class="hljs-comment">--查询权限</span><br><span class="hljs-keyword">show</span> grants <span class="hljs-keyword">for</span> loh2<br><span class="hljs-keyword">show</span> grants <span class="hljs-keyword">for</span> root<span class="hljs-variable">@localhost</span><br><br><span class="hljs-comment">--root用户权限：grant all privileges on *.* &#x27;root&#x27;@&#x27;localhost&#x27; with grant option</span><br><br><span class="hljs-comment">--撤销权限, revoke哪些权限在哪个库撤销</span><br><span class="hljs-keyword">revoke</span> <span class="hljs-keyword">all</span> privileges <span class="hljs-keyword">on</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> loh2<br><br><span class="hljs-comment">--删除用户</span><br><span class="hljs-keyword">drop</span> <span class="hljs-keyword">user</span> loh2<br></code></pre></td></tr></table></figure>
+
+<h2 id="mysql备份"><a href="#mysql备份" class="headerlink" title="mysql备份"></a>mysql备份</h2><ul>
+<li>保证安全性</li>
+<li>数据转移</li>
+</ul>
+<p> <img src="/post/47633/image-20230531101726886.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h1><p><img src="/post/47633/image-20230531101925972.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h2><h3 id="第一范式："><a href="#第一范式：" class="headerlink" title="第一范式："></a>第一范式：</h3><p>原子性，保证不可再分</p>
+<h3 id="第二范式："><a href="#第二范式：" class="headerlink" title="第二范式："></a>第二范式：</h3><p>在第一范式基础上，每张表只描述一件事情</p>
+<h3 id="第三范式："><a href="#第三范式：" class="headerlink" title="第三范式："></a>第三范式：</h3><p>第三范式需要确保数据表的每一列都与主键直接相关，不能间接相关</p>
+<p><img src="/post/47633/image-20230601162144437.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="JDBC（重点）"><a href="#JDBC（重点）" class="headerlink" title="JDBC（重点）"></a>JDBC（重点）</h1><h2 id="数据库驱动"><a href="#数据库驱动" class="headerlink" title="数据库驱动"></a>数据库驱动</h2><p>下载mysql驱动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">//加载驱动</span><br>Class.forName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br><br><span class="hljs-comment">//设置数据库地址,使用unicode编码,使用utf8编码,使用安全连接</span><br><span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:mysql://localhost:3306/jdbcstu?useUnicode=true&amp;character=utf8&amp;useSSL=true&quot;</span>;<br><span class="hljs-comment">//用户名 密码</span><br><span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;root&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;123456&quot;</span>;<br><br><span class="hljs-comment">//连接并获取数据库对象</span><br><span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url,username,password);<br><br><span class="hljs-comment">//执行sql的对象</span><br><span class="hljs-type">Statement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.createStatement();<br><span class="hljs-comment">//定义sql语句</span><br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;SELECT * FROM USER&quot;</span>;<br><span class="hljs-comment">//获取执行sql的结果对象</span><br><span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> statement.executeQuery(sql);<br><br><span class="hljs-comment">//循环输出</span><br><span class="hljs-keyword">while</span> (resultSet.next())&#123;<br>    System.out.println(<span class="hljs-string">&quot;id：&quot;</span>+resultSet.getObject(<span class="hljs-string">&quot;id&quot;</span>));<br>    System.out.println(<span class="hljs-string">&quot;name：&quot;</span>+resultSet.getObject(<span class="hljs-string">&quot;name&quot;</span>));<br>    System.out.println(<span class="hljs-string">&quot;pwd：&quot;</span>+resultSet.getObject(<span class="hljs-string">&quot;password&quot;</span>));<br>    System.out.println(<span class="hljs-string">&quot;email：&quot;</span>+resultSet.getObject(<span class="hljs-string">&quot;email&quot;</span>));<br>    System.out.println(<span class="hljs-string">&quot;birth：&quot;</span>+resultSet.getObject(<span class="hljs-string">&quot;birthday&quot;</span>));<br>&#125;<br><br><span class="hljs-comment">//释放连接</span><br>resultSet.close();<br>statement.close();<br>connection.close();<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DriverManager</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//加载驱动1</span><br>Class.forName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br><br><span class="hljs-comment">//加载驱动2</span><br>DriverManager.registerDriver(<span class="hljs-keyword">new</span> <span class="hljs-title class_">com</span>.mysql.cj.jdbc.Driver());<br></code></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>statement执行类</p>
+</blockquote>
+<p>execute执行语句</p>
+<p><img src="/post/47633/image-20230601194714172.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230601194848888.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230601194905621.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="statement对象"><a href="#statement对象" class="headerlink" title="statement对象"></a>statement对象</h2><p>jdbc中的statement对象用于向数据库发送SQL语句，想完成对数据库的增删改查，只需要通过这个对象向数据库发送增删改查语句即可。</p>
+<blockquote>
+<p>CRUD操作 – create</p>
+</blockquote>
+<p>使用executeUpdate（String sql）方法完成数据添加操作，示例操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();<br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;insert into user(...) values(....)&quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> st.executeUpdate(sql);<br><span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>)&#123;<br>	System.out.println(<span class="hljs-string">&quot;插入成功！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>CRUD操作 – delete</p>
+</blockquote>
+<p>使用executeUpdate(String sql)方法完成数据删除操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();<br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delete from user where id = 1&quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> st.executeUpdate(sql);<br><span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>)&#123;<br>	System.out.println(<span class="hljs-string">&quot;删除成功！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>CRUD操作 – update</p>
+</blockquote>
+<p>使用executeUpdate(String sql)方法完成数据修改操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();<br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;update user set name = &#x27;&#x27; where name = &#x27;&#x27; &quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> st.executeUpdate(sql);<br><span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>)&#123;<br>	System.out.println(<span class="hljs-string">&quot;修改成功！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>CRUD操作 – read</p>
+</blockquote>
+<p>使用executeQuery(String sql)方法完成数据库查询操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();<br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot; select * from user where id = 1 &quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> st.executeUpdate(sql);<br><span class="hljs-keyword">while</span>(rs.next())&#123;<br>	<span class="hljs-comment">//根据获取列表的数据类型，分别调用rs的相应方法映射到JAVA对象中</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>插入数据程序实例</strong></p>
+</blockquote>
+<p>新建db,properties文件，存放连接数据库所用参数</p>
+<p><img src="/post/47633/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzMzOTQwMTA4,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" lazyload></p>
+<p>db.properties文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">driver=com.mysql.cj.jdbc.Driver<br>url=jdbc:mysql:<span class="hljs-comment">//localhost:3306/jdbcstudy?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span><br>username= <span class="hljs-type">root</span><br><span class="hljs-variable">password</span> <span class="hljs-operator">=</span> root<br></code></pre></td></tr></table></figure>
+
+<p>新建工具类，写有连接数据库使用的代码，方便其他类调用。</p>
+<p><img src="/post/47633/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzMzOTQwMTA4,size_16,color_FFFFFF,t_70#pic_center-1685620298356-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>jdbcUtils.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.wang.liesson2.utils;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.sql.*;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">jdbcUtils</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <br>    <span class="hljs-keyword">static</span>&#123;<br>       	 <span class="hljs-keyword">try</span>&#123;<br>           <span class="hljs-type">InputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> jdbcUtils.class.getClassLoader().getResourceAsStream(<span class="hljs-string">&quot;db.properties&quot;</span>);<br>            <span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>            properties.load(in);<br>            driver = properties.getProperty(<span class="hljs-string">&quot;driver&quot;</span>);<br>            url = properties.getProperty(<span class="hljs-string">&quot;url&quot;</span>);<br>            username = properties.getProperty(<span class="hljs-string">&quot;username&quot;</span>);<br>            password = properties.getProperty(<span class="hljs-string">&quot;password&quot;</span>);<br>            <span class="hljs-comment">//驱动只需要加载一次</span><br>            Class.forName(driver);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">//获取连接</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title function_">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException&#123;<br>        <span class="hljs-keyword">return</span> DriverManager.getConnection(url,username,password);<br>    &#125;<br>   <br>    <span class="hljs-comment">//释放连接资源</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">release</span><span class="hljs-params">(Connection conn, Statement st, ResultSet rs)</span>&#123;<br>        <span class="hljs-keyword">if</span>(rs!=<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                rs.close();<br>            &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(st!=<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                st.close();<br>            &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(conn!=<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                conn.close();<br>            &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>测试插入类<img src="/post/47633/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzMzOTQwMTA4,size_16,color_FFFFFF,t_70#pic_center-1685620327858-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>TestInsert.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.wang.liesson2;<br><br><span class="hljs-keyword">import</span> com.wang.liesson2.utils.jdbcUtils;<br><br><span class="hljs-keyword">import</span> java.sql.Connection;<br><span class="hljs-keyword">import</span> java.sql.ResultSet;<br><span class="hljs-keyword">import</span> java.sql.SQLException;<br><span class="hljs-keyword">import</span> java.sql.Statement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestInsert</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br>    &#123;<br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            conn = jdbcUtils.getConnection(); <span class="hljs-comment">//获取连接</span><br>            st = conn.createStatement();  <span class="hljs-comment">//创建Statement对象</span><br>            <br>            <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;INSERT INTO users (id,`NAME`,`PASSWORD`,`email`,`birthday`)\n&quot;</span> +<br>                    <span class="hljs-string">&quot;VALUES(4,&#x27;wangchen&#x27;,&#x27;123456&#x27;,&#x27;3247829@qq.com&#x27;,&#x27;2021-1-1&#x27;)\n&quot;</span>;<br><br>            <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span>  st.executeUpdate(sql);<br>            <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span>)&#123; <span class="hljs-comment">//如果数据大于0</span><br>                System.out.println(<span class="hljs-string">&quot;插入成功！&quot;</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>            e.printStackTrace();<br>        &#125;<span class="hljs-keyword">finally</span> &#123;<br>            jdbcUtils.release(conn,st,rs);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p>sql注入：通过漏洞方法使数据库判断条件为true，未经过过滤直接返回表值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs SQL">package com.loh.utils;<br><br>import java.sql.Connection;<br>import java.sql.ResultSet;<br>import java.sql.Statement;<br><br>public class TestSqlInject &#123;<br>    public <span class="hljs-keyword">static</span> void main(String[] args) &#123;<br>        login(&quot;&#x27; or&#x27; 1=1&quot;,&quot;123456&quot;);<br>    &#125;<br>    public <span class="hljs-keyword">static</span> void login(String username,String password)&#123;<br>        Connection conn <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        Statement st <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        ResultSet rs <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br><br>        try&#123;<br><br>            conn <span class="hljs-operator">=</span> JdbcUtils.getConnection();<br>            st<span class="hljs-operator">=</span>conn.createStatement();<br><br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">USER</span> <span class="hljs-keyword">WHERE</span> `name` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;zhangsan&#x27;</span> <span class="hljs-keyword">AND</span> `password` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;123456&#x27;</span>;<br>            String <span class="hljs-keyword">sql</span> <span class="hljs-operator">=</span> &quot;SELECT * FROM USER where `name` =&#x27;&quot;<span class="hljs-operator">+</span>username<span class="hljs-operator">+</span>&quot;&#x27;and `password` = &#x27;&quot;<span class="hljs-operator">+</span>password<span class="hljs-operator">+</span>&quot;&#x27;&quot;;<br>            rs <span class="hljs-operator">=</span> st.executeQuery(<span class="hljs-keyword">sql</span>);<br><br>            while (rs.next())&#123;<br>                System.out.println(&quot;name：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;name&quot;));<br>                System.out.println(&quot;pwd：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;password&quot;));<br>                System.out.println(&quot;====================&quot;);<br>            &#125;<br><br>        &#125;catch (Exception e)&#123;&#125;<br><br><br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Preparedstatement对象"><a href="#Preparedstatement对象" class="headerlink" title="Preparedstatement对象"></a>Preparedstatement对象</h2><h3 id="selcet"><a href="#selcet" class="headerlink" title="selcet"></a>selcet</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs SQL">package com.loh.utils;<br><br>import java.sql.Connection;<br>import java.sql.PreparedStatement;<br>import java.sql.ResultSet;<br><br><br>public class TestPreparedStatementSelect &#123;<br>    public <span class="hljs-keyword">static</span> void main(String[] args) &#123;<br>        login();<br>    &#125;<br>    public <span class="hljs-keyword">static</span> void login () &#123;<br>        Connection conn <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        PreparedStatement st <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        ResultSet rs <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br><br>        try &#123;<br><br>            conn <span class="hljs-operator">=</span> JdbcUtils.getConnection();<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>使用？作为占位符代替参数预编译<br>            String <span class="hljs-keyword">sql</span> <span class="hljs-operator">=</span> &quot;select * from user where id = ?&quot;;<br>            st <span class="hljs-operator">=</span> conn.prepareStatement(<span class="hljs-keyword">sql</span>);<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>手动给参数赋值<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">set</span>可以指定参数类型，(<span class="hljs-keyword">sql</span>参数下标,设置值)<br>            st.setInt(<span class="hljs-number">1</span>, <span class="hljs-number">8</span>);<br><br>            rs <span class="hljs-operator">=</span> st.executeQuery();<br>            while (rs.next())&#123;<br>                System.out.println(&quot;id：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;id&quot;));<br>                System.out.println(&quot;name：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;name&quot;));<br>                System.out.println(&quot;pwd：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;password&quot;));<br>                System.out.println(&quot;email：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;email&quot;));<br>                System.out.println(&quot;birth：&quot;<span class="hljs-operator">+</span>rs.getObject(&quot;birthday&quot;));<br>            &#125;<br><br>        &#125; catch (Exception e) &#123;<br><br>        &#125; finally &#123;<br>            JdbcUtils.release(conn, st, <span class="hljs-keyword">null</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs SQL">package com.loh.utils;<br><br>import java.sql.Connection;<br>import java.sql.PreparedStatement;<br>import java.sql.ResultSet;<br><br>public class TestPreparedStatementInsert &#123;<br>    public <span class="hljs-keyword">static</span> void main(String[] args) &#123;<br>        login();<br>    &#125;<br>    public <span class="hljs-keyword">static</span> void login()&#123;<br>        Connection conn <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        PreparedStatement st <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        ResultSet rs <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br><br>        try&#123;<br><br>            conn <span class="hljs-operator">=</span> JdbcUtils.getConnection();<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>使用？作为占位符代替参数预编译<br>            String <span class="hljs-keyword">sql</span> <span class="hljs-operator">=</span> &quot;insert into user(`id`,`name`,`password`,`email`,`birthday`) values(?,?,?,?,?)&quot;;<br>            st<span class="hljs-operator">=</span>conn.prepareStatement(<span class="hljs-keyword">sql</span>);<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>手动给参数赋值<br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">set</span>可以指定参数类型，(<span class="hljs-keyword">sql</span>参数下标,设置值)<br>            st.setInt(<span class="hljs-number">1</span>,<span class="hljs-number">9</span>);<br>            st.setString(<span class="hljs-number">2</span>,&quot;wangwu&quot;);<br>            st.setString(<span class="hljs-number">3</span>,&quot;654321&quot;);<br>            st.setString(<span class="hljs-number">4</span>,&quot;654321@da.com&quot;);<br>            st.setDate(<span class="hljs-number">5</span>,<span class="hljs-keyword">new</span> java.sql.Date(<span class="hljs-keyword">new</span> java.util.Date().getTime()));<br>            <span class="hljs-type">int</span> i <span class="hljs-operator">=</span> st.executeUpdate();<br><br>            if(i <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span> )&#123;<br>                System.out.println(&quot;插入成功&quot;);<br>            &#125;<br><br><br>        &#125;catch (Exception e)&#123;<br><br>        &#125;finally &#123;<br>            JdbcUtils.release(conn,st,<span class="hljs-keyword">null</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="IDEA连接数据库"><a href="#IDEA连接数据库" class="headerlink" title="IDEA连接数据库"></a>IDEA连接数据库</h2><p><img src="/post/47633/242a44dc9d05400c9bc85be58d270ae4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><strong>找到database</strong></li>
+<li><strong>点击“+”</strong></li>
+<li><strong>点击Data Source</strong></li>
+<li><strong>最后点击Mysql</strong></li>
+</ul>
+<h3 id="配置连接💎"><a href="#配置连接💎" class="headerlink" title="配置连接💎"></a>配置连接💎</h3><p><img src="/post/47633/56048e50a79a4fd6a448db468e25c530.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li> <strong>连接的名称</strong></li>
+<li> <strong>连接数据库的地址跟端口 地址默认localhost 端口默认3306</strong></li>
+<li> <strong>数据库的用户名跟密码</strong></li>
+<li> <strong>需要连接数据库的名字</strong></li>
+<li> <strong>测试连接</strong></li>
+</ul>
+<p> <strong>接着就是配置我们的驱动！</strong></p>
+<p><img src="/post/47633/cd56b0d18cb5492cb6b55fa46ca03d76.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>Drivers-&gt;MySQL-&gt;Driver files</strong></p>
+<p><strong>回到 Date Sources，出现*<em>**绿色的小勾**</em>*，即表示连接成功，然后点击OK，结束配置。</strong></p>
+<p><img src="/post/47633/b2cad7b1eff3463eadae2338c7186a19.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>还有一种情况</strong></p>
+<p><img src="/post/47633/5f6a2f62cc35450b9992c02ca0873827.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>相信大家都会遇到这种情况吧</strong></p>
+<p><strong>小王来教大家如何解决！</strong></p>
+<p><strong>我们先把错误代码copy 翻译一下</strong></p>
+<p><img src="/post/47633/437be7d072aa499f98a34eef31b1a100.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>这就是mysql里的时区是默认的！</strong></p>
+<p><strong>我们需要更改时区！</strong></p>
+<blockquote>
+<p><strong>show variables like’%time_zone’;</strong></p>
+</blockquote>
+<p><strong>注意*<em>**分号不能省略**</em>*</strong> </p>
+<p><img src="/post/47633/469dcd8ec2ec477ea4f6772b997dc458.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>默认是system</strong></p>
+<p><strong>我们需要插入一条sql语句</strong></p>
+<blockquote>
+<ul>
+<li> <strong>set time_zone=’+8:00’;</strong></li>
+</ul>
+</blockquote>
+<p> <img src="/post/47633/87f6b7d700214a78b7cb8c7438dec308.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>接着小王才查看一下！</strong></p>
+<p> <img src="/post/47633/11cb08ea35e64030ad21c893b684e3e5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>成功！！</strong></p>
+<p> <img src="/post/47633/1ace7c71b8e44b299b739b8af4bf37dc.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>接下来点击Database</p>
+<p><strong>默认是system</strong></p>
+<p><strong>我们需要插入一条sql语句</strong></p>
+<blockquote>
+<ul>
+<li> <strong>set time_zone=’+8:00’;</strong></li>
+</ul>
+</blockquote>
+<p> <img src="/post/47633/87f6b7d700214a78b7cb8c7438dec308-1686033003324-23.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>接着小王才查看一下！</strong></p>
+<p> <img src="/post/47633/11cb08ea35e64030ad21c893b684e3e5-1686033003324-25.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>成功！！</strong></p>
+<p> <img src="/post/47633/1ace7c71b8e44b299b739b8af4bf37dc-1686033003324-27.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>接下来点<strong>默认是system</strong></p>
+<p><strong>我们需要插入一条sql语句</strong></p>
+<blockquote>
+<ul>
+<li> <strong>set time_zone=’+8:00’;</strong></li>
+</ul>
+</blockquote>
+<p> <img src="https://img-blog.csdnimg.cn/87f6b7d700214a78b7cb8c7438dec308.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>接着小王才查看一下！</strong></p>
+<p> <img src="/post/47633/11cb08ea35e64030ad21c893b684e3e5-1686033007808-34.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>成功！！</strong></p>
+<p> <img src="https://img-blog.csdnimg.cn/1ace7c71b8e44b299b739b8af4bf37dc.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>接下来点击Database</p>
+<p><strong>默认是system</strong></p>
+<p><strong>我们需要插入一条sql语句</strong></p>
+<blockquote>
+<ul>
+<li> <strong>set time_zone=’+8:00’;</strong></li>
+</ul>
+</blockquote>
+<p> <img src="/post/47633/87f6b7d700214a78b7cb8c7438dec308-1686033015285-41.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>接着小王才查看一下！</strong></p>
+<p> <img src="/post/47633/11cb08ea35e64030ad21c893b684e3e5-1686033015285-43.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>成功！！</strong></p>
+<p> <img src="/post/47633/1ace7c71b8e44b299b739b8af4bf37dc-1686033015285-45.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>接下来点击Database</p>
+<p><img src="/post/47633/ef541228f6564c9c8422c7c6fdeaf4e5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="IDEA操作事务"><a href="#IDEA操作事务" class="headerlink" title="IDEA操作事务"></a>IDEA操作事务</h2><ul>
+<li><p>关闭自动提交</p>
+</li>
+<li><p>提交事务</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs SQL">package com.loh.utils;<br><br>import java.sql.Connection;<br>import java.sql.PreparedStatement;<br>import java.sql.ResultSet;<br>import java.sql.SQLException;<br><br>public class TestTransaction &#123;<br>    public <span class="hljs-keyword">static</span> void main(String[] args) &#123;<br>        Connection conn <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        PreparedStatement st <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br>        ResultSet rs <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br><br>        try&#123;<br><br>            conn <span class="hljs-operator">=</span> JdbcUtils.getConnection();<br><br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>关闭数据库自动提交<br>            conn.setAutoCommit(<span class="hljs-literal">false</span>);<br>            <br>            String sql1 <span class="hljs-operator">=</span> &quot;update user set `id` = &#x27;15&#x27; where id = &#x27;10&#x27;&quot; ;<br>            st<span class="hljs-operator">=</span>conn.prepareStatement(sql1);<br>            String sql2 <span class="hljs-operator">=</span> &quot;update user set `id` = &#x27;16&#x27; where id = &#x27;8&#x27;&quot; ;<br>            st<span class="hljs-operator">=</span>conn.prepareStatement(sql2);<br><br>            <span class="hljs-type">int</span> i<span class="hljs-operator">=</span>st.executeUpdate();<br><br>            <span class="hljs-operator">/</span><span class="hljs-operator">/</span>业务完成，提交事务<br>            conn.commit();<br>            <br>            if(i <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span> )&#123;<br>                System.out.println(&quot;修改成功&quot;);<br>            &#125;<br>            <br>        &#125;catch (<span class="hljs-keyword">SQLException</span> e)&#123;<br>            try &#123;<br>            conn.rollback();<br>            &#125;catch (<span class="hljs-keyword">SQLException</span> e1)&#123;<br>                e1.printStackTrace();<br>            &#125;<br>        &#125;finally &#123;<br>            JdbcUtils.release(conn,st,<span class="hljs-keyword">null</span>);<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h2><p><img src="/post/47633/image-20230607200251444.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230607200309790.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>DBCP</p>
+</blockquote>
+<p><img src="/post/47633/image-20230607201041820.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>C3P0</p>
+</blockquote>
+<p><img src="/post/47633/image-20230607201422290.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47633/image-20230607201441631.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../7416/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb开发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../8016/">
+                        <span class="hidden-mobile">前端基础-JavaScript高级</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('../../css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8875589b25f8feff97f0","clientSecret":"22b9d54c5845ddb41a0d0f82b22fc4f935607650","repo":"BugDev-Parker.github.io","owner":"BugDev-Parker","admin":["BugDev-Parker"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '765265d87de92d4c60553caec79f56c6'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>
