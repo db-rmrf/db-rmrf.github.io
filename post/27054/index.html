@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Parker">
+  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  
+    <meta name="description" content="特辑专属BGM-Hacknet原声集         生成树STP生成树协议 根桥：在以太网络中，以某台交换机的某个端口为根的生成。此端口为 此外其他交换机为非根  消除环路：通过阻断冗余链路来消除网络中可能存在的环路。  链路备份：当活动路径发生故障时， 激活备份链路， 及时恢复网络连通性。  选举根端口  阻塞非根端口  非根交换机在选举端口时分别根据该端口的根路径开销、对端BID、对端PID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCIA速通-网络工程师 -3-生成树协议">
+<meta property="og:url" content="https://bugdev.tk/post/27054/index.html">
+<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:description" content="特辑专属BGM-Hacknet原声集         生成树STP生成树协议 根桥：在以太网络中，以某台交换机的某个端口为根的生成。此端口为 此外其他交换机为非根  消除环路：通过阻断冗余链路来消除网络中可能存在的环路。  链路备份：当活动路径发生故障时， 激活备份链路， 及时恢复网络连通性。  选举根端口  阻塞非根端口  非根交换机在选举端口时分别根据该端口的根路径开销、对端BID、对端PID">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bugdev.tk/img/post_to_index/span%20tree.jpg">
+<meta property="article:published_time" content="2022-03-09T14:49:00.000Z">
+<meta property="article:modified_time" content="2022-04-10T15:59:54.408Z">
+<meta property="article:author" content="Parker">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/span%20tree.jpg">
+  
+  
+  <title>HCIA速通-网络工程师 -3-生成树协议 - BugDev - Parker&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>BugDev - Parker&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/7.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HCIA速通-网络工程师 -3-生成树协议">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-09 22:49" pubdate>
+        2022年3月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HCIA速通-网络工程师 -3-生成树协议</h1>
+            
+            <div class="markdown-body">
+              <p><strong>特辑专属BGM-Hacknet原声集</strong></p>
+
+    <div id="aplayer-CdNPIZUh" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="8058662392" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="140px" data-preload="auto" data-theme="#555"></div> 
+
+<h1 id="生成树"><a href="#生成树" class="headerlink" title="生成树"></a>生成树</h1><h2 id="STP生成树协议"><a href="#STP生成树协议" class="headerlink" title="STP生成树协议"></a>STP生成树协议</h2><p><img src="/post/27054/image-20220315225145172.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>根桥：</strong>在以太网络中，以某台交换机的某个端口为根的生成。此端口为</p>
+<p>此外其他交换机为非根</p>
+<ul>
+<li><p>消除环路：通过阻断冗余链路来消除网络中可能存在的环路。</p>
+</li>
+<li><p>链路备份：当活动路径发生故障时， 激活备份链路， 及时恢复网络连通性。</p>
+</li>
+<li><p>选举根端口</p>
+</li>
+<li><p>阻塞非根端口</p>
+</li>
+<li><p><strong>非根交换机在选举端口时分别根据该端口的根路径开销、对端BID、对端PID和本端PID选择</strong></p>
+</li>
+<li><p>一个周期内的状态变迁时间为15秒</p>
+</li>
+</ul>
+<h4 id="根桥选举过程"><a href="#根桥选举过程" class="headerlink" title="根桥选举过程"></a><strong>根桥选举过程</strong></h4><ol>
+<li><strong>首先对比桥优先级，桥优先级最高（数值最小的）的设备会被选举为根桥。</strong></li>
+<li><strong>如果桥优先级相同，则会比较MAC地址，MAC地址越小则越优先。</strong></li>
+</ol>
+<h4 id="根端口选举"><a href="#根端口选举" class="headerlink" title="根端口选举"></a><strong>根端口选举</strong></h4><ul>
+<li><strong>非根交换机在选举根端口时依据的先后顺序为该端口的根路径开销、对端BID（Bridge ID）、对端PID（Port ID）和本端PID。</strong></li>
+</ul>
+<h3 id="STP端口角色"><a href="#STP端口角色" class="headerlink" title="STP端口角色"></a>STP端口角色</h3><p>STP中定义了三种端口角色：指定端口，根端口和预备端口。</p>
+<p>指定端口（<strong>Design</strong>）：是交换机向所连网段转发配置BPDU的端口，每个网段有且只能有一个指定端口。一般情况下，根桥的每个端口总是指定端口。</p>
+<p>根端口（<strong>Root</strong>）：是非根交换机去往根桥路径最优的端口。在一个运行STP协议的交换机上最多只有一个根端口，但根桥上没有根端口。</p>
+<p>预备端口（<strong>Alternate</strong>）：如果一个端口既不是指定端口也不是根端口，则此端口为预备端口。预备端口将被阻塞。</p>
+<p><strong>Tips</strong>：一台交换机有且仅有一个根端口（根桥除外），一条链路有且仅有一个指定端口。</p>
+<h3 id="STP端口状态"><a href="#STP端口状态" class="headerlink" title="STP端口状态"></a>STP端口状态</h3><p><strong>Blocking</strong>（阻塞状态）：二层端口为非指定端口，也不会参与数据帧的转发。</p>
+<p><strong>Listening</strong>（侦听状态）：生成树会根据交换机所接收到的BPDU而判断出了这个端口应该参与数据帧的转发。</p>
+<p><strong>Learning</strong> (学习状态)：这个二层端口准备参与数据帧的转发，并开始填写MAC表。在默认情况下，端口会在这种状态下停留15秒钟时间。</p>
+<p><strong>Forwarding</strong>（转发状态）：这个二层端口已经成为了活动拓扑的一个组成部分，它会转发数据帧，并同时收发BPDU。</p>
+<p><strong>Disabled</strong>（禁用状态）：这个二层端口不会参与生成树，也不会转发数据帧。</p>
+<p><img src="/post/27054/1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Bridge-Protocol-Data-Unit"><a href="#Bridge-Protocol-Data-Unit" class="headerlink" title="Bridge Protocol Data Unit"></a>Bridge Protocol Data Unit</h3><p><img src="/post/27054/image-20220317164521244.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>BPDU保护桥ID、路径开销、端口ID、计时器等参数</li>
+<li>stp稳定状态下只由根端口发送bpdu</li>
+<li>在初始状态下个交换机端口都发送bpdu信息以决定端口状态来选择指定端口</li>
+</ul>
+<p>标准生成树的bpdu参数</p>
+<p><img src="/post/27054/image-20220317165213964.png" srcset="/img/loading.gif" lazyload></p>
+<p>message age&amp;&amp;max age:    20 sec</p>
+<p>hello time ：2 sec</p>
+<h3 id="STP拓扑变化处理过程"><a href="#STP拓扑变化处理过程" class="headerlink" title="STP拓扑变化处理过程"></a>STP拓扑变化处理过程</h3><p><img src="/post/27054/222651z27vmmc4g2vmiow2.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li>T点接口发生变更后，下游设备会不间断地向上游设备发送TCN BPDU报文。</li>
+<li>上游设备收到下游设备发来的TCN BPDU报文后，只有指定端口处理TCN BPDU报文。其它端口也有可能收到TCN BPDU报文，但不会处理。</li>
+<li>上游设备会把配置BPDU报文中的Flags的TCA位设置1，然后发送给下游设备，告知下游设备停止发送TCN BPDU报文。</li>
+<li>上游设备复制一份TCN BPDU报文，向根桥方向发送。</li>
+<li>重复步骤1、2、3、4，直到根桥收到TCN BPDU报文。</li>
+<li>根桥把配置BPDU报文中的Flags的TC位置1后发送，通知下游设备直接删除桥MAC地址表项。</li>
+</ol>
+<h3 id="STP配置"><a href="#STP配置" class="headerlink" title="STP配置"></a>STP配置</h3><figure class="highlight dos"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs dos">[Huawei]stp <span class="hljs-built_in">mode</span> ?<br>  mstp  Multiple Spanning <span class="hljs-built_in">Tree</span> Protocol (MSTP) <span class="hljs-built_in">mode</span><br>  rstp  Rapid Spanning <span class="hljs-built_in">Tree</span> Protocol (RSTP) <span class="hljs-built_in">mode</span><br>  stp   Spanning <span class="hljs-built_in">Tree</span> Protocol (STP) <span class="hljs-built_in">mode</span><br>[Huawei]stp <span class="hljs-built_in">mode</span> stp<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置交换机优先级"><a href="#配置交换机优先级" class="headerlink" title="配置交换机优先级"></a>配置交换机优先级</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[Huawei]</span>stp priority <span class="hljs-number">4096</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="配置交换机路径开销"><a href="#配置交换机路径开销" class="headerlink" title="配置交换机路径开销"></a>配置交换机路径开销</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">[Huawei]stp pathcost-standard ?<br>  dot1d-<span class="hljs-number">1998</span>  IEEE <span class="hljs-number">802.1</span>D-<span class="hljs-number">1998</span><br>  dot1t       IEEE <span class="hljs-number">802.1</span>T<br>  legacy      Legacy<br>[Huawei]<span class="hljs-keyword">interface</span> GigabitEthernet <span class="hljs-number">0</span><span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br>[Huawei-GigabitEthernet0<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]stp cost <span class="hljs-number">2000</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-attr">[Huawei]</span><span class="hljs-attribute">display</span> stp<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="RSTP快速生成树"><a href="#RSTP快速生成树" class="headerlink" title="RSTP快速生成树"></a>RSTP快速生成树</h2><p><img src="/post/27054/image-20220317184751227.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>网络拓扑快速收敛</li>
+</ul>
+<p><strong>RSTP相对于标准STP增加了Backup端口和边缘端口</strong></p>
+<ul>
+<li>Backup：作为指定端口的备份端口，提供另外一条从根桥到非根桥的备份链路</li>
+<li>边缘端口Edge port：不接收处理BPDU、不参与RSTP运算<ul>
+<li>边缘端口在端口UP之后立即进入转发状态；不需等待2倍的转发延时就可转发流量</li>
+<li>P/A机制中，边缘端口不阻塞，可持续进行流量转发</li>
+<li>边缘端口UP时，不触发TC机制</li>
+</ul>
+</li>
+</ul>
+<h3 id="RSTP端口状态"><a href="#RSTP端口状态" class="headerlink" title="RSTP端口状态"></a>RSTP端口状态</h3><p><img src="/post/27054/image-20220317190416695.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="RST-BPDU"><a href="#RST-BPDU" class="headerlink" title="RST BPDU"></a>RST BPDU</h3><p><img src="/post/27054/image-20220317190513170.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>STP的配置BPDU中的Flag字段的中间6位在RSTP中的到应用</strong></li>
+<li><strong>非根桥设备无论是否收到根桥发送的配置BPDU，都会按照Hello Timer规定的时间间隔发送配置BPDU</strong></li>
+</ul>
+<h3 id="收敛过程"><a href="#收敛过程" class="headerlink" title="收敛过程"></a>收敛过程</h3><p><img src="/post/27054/image-20220317190858897.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>每一台交换机启动RSTP后，都认为自己是”根桥”，并且发送RST BPDU。所以端口都为指定端口，处于Discarding状态</strong></li>
+</ul>
+<p><img src="/post/27054/image-20220317191024443.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>SWB收到了更优的RST BPDU，于是停止发送RST BPDU,并开始执行同步</strong></li>
+</ul>
+<p><img src="/post/27054/image-20220317191055434.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>阻塞所以非边缘端口后，SWB会发送一个Agreement位置的RST BPDU</strong></li>
+</ul>
+<p><img src="/post/27054/image-20220317191153104.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>P/A进程向下游继续传递，SWB和SWC会继续进行收敛</strong></li>
+</ul>
+<h3 id="RSTP拓扑变化处理"><a href="#RSTP拓扑变化处理" class="headerlink" title="RSTP拓扑变化处理"></a>RSTP拓扑变化处理</h3><p><img src="/post/27054/image-20220317191335772.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>其他交换设备接收到rst bpdu后，清空所有其他端口学习到的mac地址，除了收到rst bpdu的端口</strong></li>
+<li><strong>非根桥在3个hello时间内未收到RST BPDU即认为根桥出现故障，随即进行重新选举</strong></li>
+</ul>
+<h3 id="STP兼容"><a href="#STP兼容" class="headerlink" title="STP兼容"></a>STP兼容</h3><p><img src="/post/27054/image-20220317191431873.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>运行rstp的交换设备在某个端口接收到运行stp的设备发出的bdpu，会把该端口转到stp模式</strong></li>
+<li><strong>等待2个hello时间</strong></li>
+</ul>
+<h3 id="RSTP配置"><a href="#RSTP配置" class="headerlink" title="RSTP配置"></a>RSTP配置</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx">[Huawei]<span class="hljs-attribute">stp</span> mode rstp <br></code></pre></td></tr></table></figure>
+
+<h4 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx">[Huawei]<span class="hljs-attribute">display</span> stp <br></code></pre></td></tr></table></figure>
+
+<h4 id="边缘端口配置"><a href="#边缘端口配置" class="headerlink" title="边缘端口配置"></a>边缘端口配置</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx">[Huawei-GigabitEthernet0/0/0]<span class="hljs-attribute">stp</span> edged-port enable<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>边缘端口可以由disabled直接转到forwarding状态，不经历时延</li>
+</ul>
+<p><strong>全局配置边缘端口</strong></p>
+<p><strong>！！！</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs linux">stp	edged-port default<br></code></pre></td></tr></table></figure>
+
+<h4 id="根保护"><a href="#根保护" class="headerlink" title="根保护"></a>根保护</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx">[Huawei-GigabitEthernet0/0/0]<span class="hljs-attribute">stp</span> root-protection<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>根保护确保了根桥的指定端口不会因为一些网络问题而改变端口角色</strong></li>
+</ul>
+<h4 id="BPDU保护"><a href="#BPDU保护" class="headerlink" title="BPDU保护"></a>BPDU保护</h4><p><strong>假设边缘端口意外收到BPDU，则端口变成普通端口，会参与STP计算，这时会触发TC，重新刷新mac地址表，造成网络震荡，我们就可以进行BPDU保护配置</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx">[huawei]<span class="hljs-attribute">stp</span> bdpu-protection<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>配置bdpu保护后，如果边缘端口收到bdpu报文，会立即关闭，并通知网管系统，被关闭的端口只能通过手动恢复</strong></li>
+</ul>
+<h5 id="意外shutdown的恢复"><a href="#意外shutdown的恢复" class="headerlink" title="意外shutdown的恢复"></a>意外shutdown的恢复</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">error-down <span class="hljs-built_in">auto</span>-recovery cause bpdu-protection <span class="hljs-built_in">int</span>erval <span class="hljs-number">30</span>    <span class="hljs-comment">//30秒自动恢复</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">//手动恢复</span><br><span class="hljs-keyword">interface</span> <span class="hljs-symbol">g0</span>/<span class="hljs-symbol">0</span>/<span class="hljs-symbol">0</span><br><span class="hljs-symbol">undo</span>  <span class="hljs-symbol">shutdown</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="环路保护"><a href="#环路保护" class="headerlink" title="环路保护"></a>环路保护</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">[Huawei-GigabitEthernet0<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]stp loop-protection<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>根端口如果长时间收不到来自上游的bdpu，则进入discarding状态，避免在网络中形成环路</strong></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="../../categories/Network/">Network</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="../../tags/Network/">Network</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../27144/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HCIA速通-网络工程师 -4-路由协议</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../42402/">
+                        <span class="hidden-mobile">HCIA速通-网络工程师 -2-VRP基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('../../css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8875589b25f8feff97f0","clientSecret":"22b9d54c5845ddb41a0d0f82b22fc4f935607650","repo":"BugDev-Parker.github.io","owner":"BugDev-Parker","admin":["BugDev-Parker"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'b1cd54fa05f2f7bced5199caca511805'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>

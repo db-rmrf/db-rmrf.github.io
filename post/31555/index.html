@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Parker">
+  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  
+    <meta name="description" content="特辑专属BGM-Hacknet原声集         HDLC 串行链路传输方式 HDLC帧格式   信息帧、监控帧、无编号帧  配置 HDLC接口地址借用 PPPPPP协议是一种在串行链路上传输IP数据包的一种方法，是一个协议的集合，不是单一的协议，支持建立链路的链路控制协议LCP以及一系列的NCP 0x0021时，数据部分是IP数据报。 0xC021时,数据部分是LCP数据（链路控制协议） P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCIA速通-网络工程师-7-企业网络架构2">
+<meta property="og:url" content="https://bugdev.tk/post/31555/index.html">
+<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:description" content="特辑专属BGM-Hacknet原声集         HDLC 串行链路传输方式 HDLC帧格式   信息帧、监控帧、无编号帧  配置 HDLC接口地址借用 PPPPPP协议是一种在串行链路上传输IP数据包的一种方法，是一个协议的集合，不是单一的协议，支持建立链路的链路控制协议LCP以及一系列的NCP 0x0021时，数据部分是IP数据报。 0xC021时,数据部分是LCP数据（链路控制协议） P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bugdev.tk/img/post_to_index/Network.png">
+<meta property="article:published_time" content="2022-03-17T12:18:00.000Z">
+<meta property="article:modified_time" content="2022-03-29T13:21:33.231Z">
+<meta property="article:author" content="Parker">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/Network.png">
+  
+  
+  <title>HCIA速通-网络工程师-7-企业网络架构2 - BugDev - Parker&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>BugDev - Parker&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/7.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HCIA速通-网络工程师-7-企业网络架构2">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-17 20:18" pubdate>
+        2022年3月17日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HCIA速通-网络工程师-7-企业网络架构2</h1>
+            
+            <div class="markdown-body">
+              <p><strong>特辑专属BGM-Hacknet原声集</strong></p>
+
+    <div id="aplayer-GPEdRNpa" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="8058662392" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="140px" data-preload="auto" data-theme="#555"></div> 
+
+<h1 id="HDLC"><a href="#HDLC" class="headerlink" title="HDLC"></a>HDLC</h1><p><img src="/post/31555/image-20220328201940419.png" srcset="/img/loading.gif" lazyload></p>
+<p>串行链路传输方式</p>
+<p>HDLC帧格式</p>
+<p><img src="/post/31555/image-20220328204651361.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>信息帧、监控帧、无编号帧</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><img src="/post/31555/image-20220328204757358.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="HDLC接口地址借用"><a href="#HDLC接口地址借用" class="headerlink" title="HDLC接口地址借用"></a>HDLC接口地址借用</h2><p><img src="/post/31555/image-20220328204834838.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="PPP"><a href="#PPP" class="headerlink" title="PPP"></a>PPP</h1><p>PPP协议是一种在串行链路上传输IP数据包的一种方法，是一个协议的集合，不是单一的协议，支持建立链路的链路控制协议LCP以及一系列的NCP 0x0021时，数据部分是IP数据报。 0xC021时,数据部分是LCP数据（链路控制协议）</p>
+<h2 id="PPP组件"><a href="#PPP组件" class="headerlink" title="PPP组件"></a>PPP组件</h2><p><img src="/post/31555/image-20220328205145932.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="PPP链路建立过程"><a href="#PPP链路建立过程" class="headerlink" title="PPP链路建立过程"></a>PPP链路建立过程</h2><p><img src="/post/31555/image-20220328205215587.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="PPP帧格式"><a href="#PPP帧格式" class="headerlink" title="PPP帧格式"></a>PPP帧格式</h2><p><img src="/post/31555/image-20220328205323131.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="LCP报文"><a href="#LCP报文" class="headerlink" title="LCP报文"></a>LCP报文</h2><p><img src="/post/31555/image-20220328205348562.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="协商参数"><a href="#协商参数" class="headerlink" title="协商参数"></a>协商参数</h3><p><img src="/post/31555/image-20220328205421988.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p><img src="/post/31555/image-20220328205640691.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><h3 id="PAP"><a href="#PAP" class="headerlink" title="PAP"></a>PAP</h3><p>①PAP提供了一种简单的方法让对端使用2次握手来建立自己的身份，这个仅在初始连接建立时完成。<br> ②连接建立后，被认证者反复向认证者发送一对用户名和密码，直到认证被确认或连接中断。<br> ③安全性不高，密码在链路上明文传输，没有重放、反复尝试、错误攻击的保护。</p>
+<p><img src="/post/31555/image-20220328210229044.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>RTA配置<br>&lt;Huawei&gt;system-view<br><span class="hljs-regexp">//</span>进入aaa<br>[Huawei]AAA<br><span class="hljs-regexp">//</span>配置用户pppau的密码为paptext<br>[Huawei-aaa]local-user pppau password cipher paptext<br><span class="hljs-regexp">//</span>配置用户的服务类型为ppp<br>[Huawei-aaa]local-user pppau service-type ppp<br><span class="hljs-regexp">//</span>进入接口	<br>[Huawei]interface Serial <span class="hljs-number">1</span><span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br><span class="hljs-regexp">//</span>配置端口协议<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]link-protocol ppp <br><span class="hljs-regexp">//</span>配置ppp认证方式和密码<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ppp authentication-mode pap <br>password simple paptext<br><span class="hljs-regexp">//</span>配置ip地址<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ip address <span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span> <span class="hljs-number">30</span><br><br><span class="hljs-regexp">//</span>RTB配置<br>[Huawei]interface Serial <span class="hljs-number">1</span><span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br><span class="hljs-regexp">//</span>配置协议<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]link-protocol ppp <br><span class="hljs-regexp">//</span>配置用户和密码<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ppp pap local-user pppau password simple paptext<br><span class="hljs-regexp">//</span>配置ip<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ip address <span class="hljs-number">10.1</span>.<span class="hljs-number">1.2</span> <span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h4><p><img src="/post/31555/image-20220329201208048.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="CHAP"><a href="#CHAP" class="headerlink" title="CHAP"></a>CHAP</h3><p>①chap使用3次握手周期性验证对端的身份，这是在链路建立的开始就完成的，在链路建立完成后的任何时间都可以重复发送再验证。<br>②链路阶段建立完成后，认证者发送一个“质询”给被认证者，被认证者通过一次HASH计算（质询+密码）生成的值发送给认证者，认证者把自己hash出来的值与此对比，如果一致，则接受，否则拒接。<br>③两端才知道密码，而且密码不会在链路上传输。</p>
+<p><img src="/post/31555/image-20220328210309572.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>配置用户pppau的密码为chap<br>[Huawei-aaa]local-user pppau password cipher chap<br>Info: Add a new user.<br><span class="hljs-regexp">//</span>配置用户的服务类型为ppp<br>[Huawei-aaa]local-user pppau service-type ppp <br>[Huawei]interface Serial <span class="hljs-number">1</span><span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]link-protocol ppp 	<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ppp authentication-mode chap <br><span class="hljs-regexp">//</span>配置chap的用户为pppau<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ppp chap user pppau<br><span class="hljs-regexp">//</span>添加ip<br>[Huawei-Serial1<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]ip address <span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span> <span class="hljs-number">30</span><br><br>RTB配置<br>aaa<br><span class="hljs-regexp">//</span>注意<br> local-user chap password cipher nzNG<span class="hljs-string">&#x27;RXtq&#x27;</span><span class="hljs-number">939</span>O4.`(ZGYrz<span class="hljs-comment">#</span><br> local-user chap service-type ppp<br><span class="hljs-comment">#</span><br>interface Serial0<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br> link-protocol ppp<br> ppp chap user chap<br> ip address <span class="hljs-number">12.1</span>.<span class="hljs-number">1.2</span> <span class="hljs-number">255.255</span>.<span class="hljs-number">255.252</span><br><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="帧中继"><a href="#帧中继" class="headerlink" title="帧中继"></a>帧中继</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43482132/article/details/97108002">https://blog.csdn.net/qq_43482132/article/details/97108002</a></p>
+<h1 id="PPPOE"><a href="#PPPOE" class="headerlink" title="PPPOE"></a>PPPOE</h1><p><img src="/post/31555/image-20220329204649123.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h2><p><img src="/post/31555/image-20220329205330630.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>以Ethernet格式封装</li>
+</ul>
+<h2 id="会话过程"><a href="#会话过程" class="headerlink" title="会话过程"></a>会话过程</h2><p><img src="/post/31555/image-20220329205429849.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="报文类型"><a href="#报文类型" class="headerlink" title="报文类型"></a>报文类型</h2><p><img src="/post/31555/image-20220329205615511.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="client配置"><a href="#client配置" class="headerlink" title="client配置"></a>client配置</h2><p><img src="/post/31555/image-20220329205752056.png" srcset="/img/loading.gif" lazyload></p>
+<p>dialer接口限制断开</p>
+<p><img src="/post/31555/image-20220329205911713.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="server配置"><a href="#server配置" class="headerlink" title="server配置"></a>server配置</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs awk">[Huawei]sysname pppoe server<br><span class="hljs-regexp">//</span>新建ip池<br>[pppoe server]ip pool pppoe<br><span class="hljs-regexp">//</span>配置IP池地址	<br>[pppoe server-ip-pool-pppoe]network <span class="hljs-number">10.1</span>.<span class="hljs-number">12.0</span> mask <span class="hljs-number">24</span><br><span class="hljs-regexp">//</span>创建虚拟接口<br>[pppoe server]interface Virtual-Template <span class="hljs-number">1</span><br><span class="hljs-regexp">//</span>配置虚拟接口地址<br>[pppoe server-Virtual-Template1]ip address <span class="hljs-number">10.1</span>.<span class="hljs-number">12.2</span> <span class="hljs-number">24</span><br><span class="hljs-regexp">//</span>配置ppp认证方式<br>[pppoe server-Virtual-Template1]ppp authentication-mode chap <br><span class="hljs-regexp">//</span>配置绑定地址池<br>[pppoe server-Virtual-Template1]remote address pool pppoe<br><span class="hljs-regexp">//</span>进入接口<br>[pppoe server]interface GigabitEthernet <span class="hljs-number">0</span><span class="hljs-regexp">/0/</span><span class="hljs-number">0</span><br><span class="hljs-regexp">//</span>绑定虚拟接口<br>[pppoe server-GigabitEthernet0<span class="hljs-regexp">/0/</span><span class="hljs-number">0</span>]pppoe-server bind virtual-template <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="../../categories/Network/">Network</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="../../tags/Network/">Network</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../17533/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HCIA速通-网络工程师-8-企业网络架构3</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../24714/">
+                        <span class="hidden-mobile">eNSP的AR路由器启动失败问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('../../css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8875589b25f8feff97f0","clientSecret":"22b9d54c5845ddb41a0d0f82b22fc4f935607650","repo":"BugDev-Parker.github.io","owner":"BugDev-Parker","admin":["BugDev-Parker"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'b3ba57d6e7d5385e271cd8a7eb80ef5e'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../img/favicon.png">
+  <link rel="icon" href="../../img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Parker">
+  <meta name="keywords" content="BugDeveloper|Java|network|开发|技术|博客">
+  
+    <meta name="description" content="特辑专属BGM-Hacknet原声集         FTP工作原理FTP文件传输协议（File Transfer Protocol），用于Internet上的控制文件的双向传输，是一个应用程序。工作在TCP&#x2F;IP协议族的应用层，其传输层协议是TCP协议，目的在于提高文件传输的共享性和可靠性，是基于客户&#x2F;服务器模式工作的。 1.启动FTP客户通过FTP客户端软件，发起FTP交互式命令，告诉服务器，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCIA速通-网络工程师-5-传输协议（SSH部分转载）">
+<meta property="og:url" content="https://bugdev.tk/post/47492/index.html">
+<meta property="og:site_name" content="BugDev - Parker&#39;Blog">
+<meta property="og:description" content="特辑专属BGM-Hacknet原声集         FTP工作原理FTP文件传输协议（File Transfer Protocol），用于Internet上的控制文件的双向传输，是一个应用程序。工作在TCP&#x2F;IP协议族的应用层，其传输层协议是TCP协议，目的在于提高文件传输的共享性和可靠性，是基于客户&#x2F;服务器模式工作的。 1.启动FTP客户通过FTP客户端软件，发起FTP交互式命令，告诉服务器，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bugdev.tk/img/post_to_index/telent.jpg">
+<meta property="article:published_time" content="2022-03-11T15:13:00.000Z">
+<meta property="article:modified_time" content="2022-04-10T16:02:55.788Z">
+<meta property="article:author" content="Parker">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bugdev.tk/img/post_to_index/telent.jpg">
+  
+  
+  <title>HCIA速通-网络工程师-5-传输协议（SSH部分转载） - BugDev - Parker&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bugdev.tk","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"placement":"right"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"follow_dnt":true},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="../../js/utils.js" ></script>
+  <script  src="../../js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="feed.xml" title="BugDev - Parker'Blog" type="application/atom+xml">
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../index.html">
+      <strong>BugDev - Parker&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('../../img/banner/7.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HCIA速通-网络工程师-5-传输协议（SSH部分转载）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-11 23:13" pubdate>
+        2022年3月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HCIA速通-网络工程师-5-传输协议（SSH部分转载）</h1>
+            
+            <div class="markdown-body">
+              <p><strong>特辑专属BGM-Hacknet原声集</strong></p>
+
+    <div id="aplayer-iSDErdxt" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="8058662392" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="140px" data-preload="auto" data-theme="#555"></div> 
+
+<h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>FTP文件传输协议（File Transfer Protocol），用于Internet上的<strong>控制文件的双向传输</strong>，是一个应用程序。<strong>工作在TCP/IP协议族的应用层，其传输层协议是TCP协议，目的在于提高文件传输的共享性和可靠性，是基于客户/服务器模式工作的。</strong></p>
+<p>1.启动FTP<br>客户通过FTP客户端软件，发起FTP交互式命令，告诉服务器，服务器上的FTP服务会接收到这个命令，并解析发来命令，然后发出回复信息，客户端对服务器说：“我想和你聊会天，可以吗？”</p>
+<p>2.建立控制连接<br>客户端TCP层会根据服务器的IP地址，向服务器提供FTP服务的21端口发出主动建立连接的请求，服务器接收到请求后，经过三次握手，客户端与服务器端就建立了一个TCP连接，就好比是我们在A地和B地之间传输货物，首先应该建立一条运送货物的通道。这个TCP连接称为控制连接，用户发出的FTP命令和服务器的回应都是依靠该连接来传送的，在用户退出前一直存在。</p>
+<p>3.建立数据连接，并进行文件传输<br>到目前为止，客户端和服务器端已经建立了聊天的通道，聊天过程中，对方觉得很投机，想互赠礼物（将客户端和服务器端进行文件的传输比喻为互赠礼物）怎么办，这个时候我们就需要一条通道来进行礼物的传输（将数据连接比喻为数据连接），那么是如何赠送礼物的？<br>（1）客户端通过控制连接发送一个上传文件的命令，会自己分配一个临时的TCP端口号。<br>（2）客户端通过控制连接向服务器发送一个命令告诉服务器自己的IP地址和临时端口号，然后发送一条上传文件的命令。（就好客户端要赠送礼物给服务器时，不只发送一个送礼物的命令，在这之前还要发送一条自我介绍的命令，即IP地址和端口号，来告诉服务器和他聊天的是哪一个客户）<br>（3）服务器接收到客户端的IP地址和临时端口号后，以这个IP地址和端口号为目标，使用服务器上的20端口（数据端口），向客户端发出主动建立连接的请求。<br>（4）客户端收到请求后，通过三次握手后就与服务器之间建立了另外一条TCP连接数据连接（好比礼物传输的通道）。<br>（5）客户端在自己的文件系统中选择要上传（赠送礼物）的文件。<br>（6）客户端将文件写入到文件传输的进程中（即网络流中）。<br>（7）文件传输完成后，由服务器主动关闭该数据的连接。</p>
+<p>4.关闭FTP<br>当用户退出FTP时，客户端发送退出命令，之后控制连接被关闭，FTP服务结束。</p>
+<h3 id="主动模式"><a href="#主动模式" class="headerlink" title="主动模式"></a>主动模式</h3><p>FTP客户端从任意的非特殊的端口（N &gt; 1023）连入到FTP服务器的命令端口–21端口。然后客户端在N+1（N+1 &gt;= 1024）端口监听，并且通过N+1（N+1 &gt;= 1024）端口发送命令给FTP服务器。服务器会反过来连接用户本地指定的数据端口，比如20端口。</p>
+<p>主动模式的FTP的 主要问题实际上落在客户端。FTP 的客户端并不会主动连接到服务器的数据端口，而是是告诉服务器它正在监听哪个端口，然后服务器发起连接到客户端上指定的端口。但是，<strong>这样的连接有时候会被客户端的防火墙阻止</strong>。</p>
+<h3 id="被动模式"><a href="#被动模式" class="headerlink" title="被动模式"></a>被动模式</h3><p>为了解决服务器主动发起到客户端连接会被阻止的问题，另一种更完善的工作模式出现了，它就是 FTP 的被动模式，缩写作 PASV，它工作的前提是客户端明确告知 FTP 服务器它使用被动模式。</p>
+<p>在被动模式的 FTP 中，客户端启动到服务器的两个连接，<strong>解决了防火墙阻止从服务器到客户端的传入数据端口连接的问题</strong>。FTP 连接建立后，客户端在本地打开两个随机的非系统端口 N 和 N + 1(N &gt; 1023)。第一个端口连接服务器上的 21 端口，但是客户端这次将会发出 PASV 命令，也就是不允许服务器连接回其数据端口。这样，服务器随后会打开一个随机的非系统端口 P (P &gt; 1023)，并将 P 发送给客户端作为 PASV 命令的响应。然后客户端启动从端口 N+1 到端口 P 的连接来传输数据。</p>
+<h3 id="FTP传输模式"><a href="#FTP传输模式" class="headerlink" title="FTP传输模式"></a>FTP传输模式</h3><p> <img src="/post/47492/1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="路由配置FTP"><a href="#路由配置FTP" class="headerlink" title="路由配置FTP"></a>路由配置FTP</h2><p><img src="/post/47492/image-20220321231545254.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>配置用户名密码，服务类型 ftp目录 级别</strong></p>
+<p><img src="/post/47492/image-20220321233151618.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="FTP-Client"><a href="#FTP-Client" class="headerlink" title="FTP Client"></a>FTP Client</h3><p><img src="/post/47492/image-20220321233319182.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="Password认证"><a href="#Password认证" class="headerlink" title="Password认证"></a>Password认证</h3><p><img src="/post/47492/image-20220321233802137.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>CLlient</strong></p>
+<p><img src="/post/47492/image-20220321234243833.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="AAA认证"><a href="#AAA认证" class="headerlink" title="AAA认证"></a>AAA认证</h3><figure class="highlight less"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-attr">[Huawei]</span><span class="hljs-selector-tag">user-interface</span> <span class="hljs-selector-tag">vty</span> <span class="hljs-number">0</span> <span class="hljs-number">4</span><br><span class="hljs-selector-attr">[Huawei-ui-vty0-4]</span><span class="hljs-selector-tag">authentication-mode</span> <span class="hljs-selector-tag">aaa</span><br><span class="hljs-selector-attr">[HUAWEI-ui-vty0-4]</span> <span class="hljs-selector-tag">protocol</span> <span class="hljs-selector-tag">inbound</span> <span class="hljs-selector-tag">telnet</span>  <span class="hljs-comment">//配置VTY用户界面支持的协议为Telnet</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>创建用户</strong></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">[HUAWEI] aaa<br>[HUAWEI-aaa] local-<span class="hljs-keyword">user</span> <span class="hljs-title">user1</span> password cipher Huawei@<span class="hljs-number">1234</span>  //创建本地用户user1并配置密码<br>[HUAWEI-aaa] local-<span class="hljs-keyword">user</span> <span class="hljs-title">user1</span> service-<span class="hljs-keyword">type</span> telnet  //配置本地用户user1的接入类型为Telnet，该用户只能使用Telnet方式登录<br>[HUAWEI-aaa] local-<span class="hljs-keyword">user</span> <span class="hljs-title">user1</span> privilege level <span class="hljs-number">15</span>  //配置本地用户user1的用户级别为<span class="hljs-number">15</span>，该用户登录后可以执行<span class="hljs-number">0</span>~<span class="hljs-number">15</span>级的命令<br>[HUAWEI-aaa] quit<br></code></pre></td></tr></table></figure>
+
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>下文转载自：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nadr/p/15129704.html">https://www.cnblogs.com/nadr/p/15129704.html</a></p>
+<p>(1).添加Router（需要有 GigabitEthernet接口）和一个Cloud，使用eNSP模拟器中的云端口与真机中虚拟出的loopback适配器端口映射，实现真机与模拟器环境的互通，以便使用终端仿真软件来实现ssh登录。云端口配置如下:</p>
+<p><img src="/post/47492/2476630-20210811200928875-1161305719-16478797968501.png" srcset="/img/loading.gif" lazyload> <img src="/post/47492/2476630-20210811200752582-191947297-16478797968522.png" srcset="/img/loading.gif" lazyload></p>
+<p>(2).在路由器和Cloud之间添加连线，并为路由器接口配置IP地址，。测一下与真机连通性。</p>
+<p>启动路由器并配置IP地址：</p>
+<p><img src="/post/47492/2476630-20210811200608528-804967546-16478797968523.png" srcset="/img/loading.gif" lazyload></p>
+<p>（3）启动stelnet服务功能  # stelnet server enable</p>
+<p><img src="/post/47492/2476630-20210811201843280-1065177071-16478797968524.png" srcset="/img/loading.gif" lazyload></p>
+<p>（4）进行虚拟终端配置界面   #user-interface vty 0 4</p>
+<p>  配置认证方式为密码认证   #authentication-mode aaa  </p>
+<p>指定VTY用户界面所支持的协议有三个，参数分别为ssh（只支持SSH协议）、telnet（只支持telnet协议）和all（支持所有协议，包括SSH和Telnet）    #protocol inbound ssh</p>
+<p><img src="/post/47492/2476630-20210811202148391-878718523-16478797968535.png" srcset="/img/loading.gif" lazyload></p>
+<p>（5）进入aaa认证配置界面    #aaa</p>
+<p>配置允许登录的用户名user，密码为密文形式的******    #local-user user  password cipher ******</p>
+<p><img src="/post/47492/2476630-20210811202830348-1284207099-16478797968536.png" srcset="/img/loading.gif" lazyload></p>
+<p>（6）配置用户user的级别    #local-user user privilege level 15</p>
+<p>配置用户user的服务类型为ssh  #local-user user service-type ssh</p>
+<p>用来配置SSH用户缺省采用密码认证，华为说明手册中说该项属于缺省设置，但在实验过程中发现路由器是缺省设置的，交换机需要手动配置一下，有待进一步核实  #ssh user user authentication-type  password</p>
+<p><img src="/post/47492/2476630-20210811203048083-845226869-16478797968537.png" srcset="/img/loading.gif" lazyload></p>
+<p>（7）生成本地RSA密钥对  # rsa local-key-pair create   #回车确认使用默认值</p>
+<p><img src="/post/47492/2476630-20210811202726461-1315250761-16478797968548.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.结果验证</p>
+<p>  使用Xshell终端软件登录</p>
+<p>启用终端仿真软件，新建会话，输入名称（IP地址），点击“链接”按钮，在弹出的安全提示对话框中，点击“接受并保存”：</p>
+<p><img src="/post/47492/2476630-20210811203902868-175093019-16478797968549.png" srcset="/img/loading.gif" lazyload><img src="/post/47492/2476630-20210811204045892-1884126878-164787979685410.png" srcset="/img/loading.gif" lazyload></p>
+<p> 输入用户名点击确定，继续输入密码点击确定：</p>
+<p><img src="/post/47492/2476630-20210811204214100-895046390-164787979685511.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/post/47492/2476630-20210811204346486-1108632714-164787979685512.png" srcset="/img/loading.gif" lazyload></p>
+<p>链接成功。</p>
+<p> <img src="/post/47492/2476630-20210811204458820-1165789342-164787979685613.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="../../categories/Network/">Network</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="../../tags/Network/">Network</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../25704/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于高级企业网络的笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../27144/">
+                        <span class="hidden-mobile">HCIA速通-网络工程师 -4-路由协议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('../../css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8875589b25f8feff97f0","clientSecret":"22b9d54c5845ddb41a0d0f82b22fc4f935607650","repo":"BugDev-Parker.github.io","owner":"BugDev-Parker","admin":["BugDev-Parker"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'c39cb476e53023f89311654f18ceaa5b'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../js/events.js" ></script>
+<script  src="../../js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="../../js/local-search.js" ></script>
+
+
+
+  
+    <script  src="../../js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="../../js/boot.js" ></script>
+
+
+</body>
+</html>
